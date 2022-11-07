@@ -2,6 +2,8 @@
 
 namespace VoxelEngine {
 
-int sum(int, int);
+int TestCore(int, int);
+
+int TestGLFW();
 
 }  // namespace VoxelEngine

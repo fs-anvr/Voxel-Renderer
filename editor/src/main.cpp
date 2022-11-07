@@ -4,6 +4,7 @@
 int main() {
   int a = 5;
   int b = 10;
-  std::cout << VoxelEngine::sum(a, b) << std::endl;
+  std::cout << VoxelEngine::TestCore(a, b) << std::endl;
+  VoxelEngine::TestGLFW();
   return 0;
 }

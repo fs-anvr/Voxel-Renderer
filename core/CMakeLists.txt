@@ -8,3 +8,6 @@ add_library(core STATIC
   )
 
 target_include_directories(core PUBLIC includes)
+
+add_subdirectory(../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
+target_link_libraries(core PRIVATE glfw)
