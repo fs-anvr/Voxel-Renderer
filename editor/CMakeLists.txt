@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(editor)
+set(EDITOR_PROJECT_NAME editor)
 
-add_executable(editor src/main.cpp)
+project(${EDITOR_PROJECT_NAME})
 
-target_link_libraries(editor core)
+add_executable(${EDITOR_PROJECT_NAME} src/main.cpp)
 
-set_target_properties(editor PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
+target_link_libraries(${EDITOR_PROJECT_NAME} core)
+
+set_target_properties(${EDITOR_PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
+target_compile_features(${EDITOR_PROJECT_NAME} PUBLIC cxx_std_20)

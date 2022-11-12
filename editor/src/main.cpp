@@ -1,10 +1,23 @@
 #include <iostream>
-#include <test.hpp>
+#include <string>
+
+#include "App.hpp"
+
+class MyApp : public VoxelEngine::App {
+  public:
+    void Update() override {}
+};
 
 int main() {
-  int a = 5;
-  int b = 10;
-  std::cout << VoxelEngine::TestCore(a, b) << std::endl;
-  VoxelEngine::TestGLFW();
-  return 0;
+  using namespace std::string_literals;
+
+  int width = 1600;
+  int height = 900;
+  std::string title = "Voxel Engine Editor"s;
+  
+  MyApp app;
+
+  int returnCodeApp = app.Start(width, height, title);
+
+  return returnCodeApp;
 }
