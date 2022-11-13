@@ -11,8 +11,8 @@ class MyApp : public VoxelEngine::App {
 int main() {
   using namespace std::string_literals;
 
-  int width = 1600;
-  int height = 900;
+  int width = 1366;
+  int height = 768;
   std::string title = "Voxel Engine Editor"s;
   
   MyApp app;

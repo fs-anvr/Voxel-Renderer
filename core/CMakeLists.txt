@@ -10,11 +10,13 @@ set(ENGINE_PUBLIC_INCLUDES
 
 set(ENGINE_PRIVATE_INCLUDES
   src/Window.hpp
+  src/ShaderLoader.hpp
 )
 
 set(ENGINE_PRIVATE_SOURCES
   src/App.cpp
   src/Window.cpp
+  src/ShaderLoader.cpp
 )
 
 add_library(${ENGINE_PROJECT_NAME} STATIC
@@ -32,3 +34,6 @@ target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glfw)
 
 add_subdirectory(../external/glad ${CMAKE_CURRENT_BINARY_DIR}/glad)
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glad)
+
+add_subdirectory(../external/glm ${CMAKE_CURRENT_BINARY_DIR}/glm)
+target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glm)

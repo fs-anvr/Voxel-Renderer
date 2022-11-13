@@ -4,6 +4,7 @@
 #include <string>
 
 class GLFWwindow;
+typedef unsigned int GLuint;
 
 namespace VoxelEngine {
 
@@ -35,6 +36,10 @@ namespace VoxelEngine {
 
       GLFWwindow* _window;
       bool _isInitialized;
+
+      GLuint _vertexBuffer;
+      GLuint _colorBuffer;
+      GLuint _shaderProgram;
   };
 
 }  // namespace VoxelEngine
