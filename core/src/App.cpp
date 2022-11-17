@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "App.hpp"
-#include "Window.hpp"
+#include "public/App.hpp"
+#include "private/Window.hpp"
 
 namespace VoxelEngine {
 

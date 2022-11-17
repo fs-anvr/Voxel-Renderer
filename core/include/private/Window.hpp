@@ -1,7 +1,12 @@
 #pragma once
 
 #include <cstdint>
+#include <glm/glm.hpp>
 #include <string>
+#include <vector>
+
+#include "VoxelModel.hpp"
+#include "Renderer.hpp"
 
 class GLFWwindow;
 typedef unsigned int GLuint;
@@ -9,6 +14,12 @@ typedef unsigned int GLuint;
 namespace VoxelEngine {
 
   class Window {
+
+    struct InstanceData {
+      glm::vec3 color;
+      glm::vec3 offset;
+    };
+
     public:
       Window(uint16_t width, uint16_t height, std::string title);
       ~Window();
@@ -35,11 +46,12 @@ namespace VoxelEngine {
       std::string _title;
 
       GLFWwindow* _window;
-      bool _isInitialized;
+      bool _isInitialized; // костыль?
 
-      GLuint _vertexBuffer;
-      GLuint _colorBuffer;
-      GLuint _shaderProgram;
+      GLuint _shaderProgram;  // костыль?
+
+      VoxelModel _model;  // костыль?
+      Renderer _renderer; // костыль?
   };
 
 }  // namespace VoxelEngine

@@ -6,7 +6,7 @@
 
 #include <glad/gl.h>
 
-#include "ShaderLoader.hpp"
+#include "private/ShaderLoader.hpp"
 
 namespace VoxelEngine {
 

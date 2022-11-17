@@ -5,18 +5,21 @@ set(ENGINE_PROJECT_NAME core)
 project(${ENGINE_PROJECT_NAME})
 
 set(ENGINE_PUBLIC_INCLUDES
-  include/App.hpp
+  include/public/App.hpp
 )
 
 set(ENGINE_PRIVATE_INCLUDES
-  src/Window.hpp
-  src/ShaderLoader.hpp
+  include/private/Window.hpp
+  include/private/ShaderLoader.hpp
+  include/private/VoxelModel.hpp # or public?
+  include/private/Renderer.hpp
 )
 
 set(ENGINE_PRIVATE_SOURCES
   src/App.cpp
   src/Window.cpp
   src/ShaderLoader.cpp
+  src/Renderer.cpp
 )
 
 add_library(${ENGINE_PROJECT_NAME} STATIC
