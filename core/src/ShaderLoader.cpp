@@ -1,12 +1,12 @@
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
+#include "private/ShaderLoader.hpp"
 
 #include <glad/gl.h>
 
-#include "private/ShaderLoader.hpp"
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 namespace VoxelEngine {
 

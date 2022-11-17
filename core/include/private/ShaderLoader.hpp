@@ -5,9 +5,10 @@ typedef unsigned int GLuint;
 
 namespace VoxelEngine {
 
-  class ShaderLoader {
-    public:
-      static GLuint LoadShaders(std::string vertexFilePath, std::string fragmentFilePath);
-  };
+class ShaderLoader {
+ public:
+  static GLuint LoadShaders(std::string vertexFilePath,
+                            std::string fragmentFilePath);
+};
 
 }  // namespace VoxelEngine

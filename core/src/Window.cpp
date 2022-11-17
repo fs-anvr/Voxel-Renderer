@@ -1,17 +1,17 @@
-#include <iostream>
-#include <cstdint>
-#include <string>
+#include "private/Window.hpp"
 
-#include <glad/gl.h>
 #include <GLFW/glfw3.h>
+#include <glad/gl.h>
 
+#include <cstdint>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <iostream>
+#include <string>
 
-#include "private/Window.hpp"
+#include "private/Renderer.hpp"
 #include "private/ShaderLoader.hpp"
 #include "private/VoxelModel.hpp"
-#include "private/Renderer.hpp"
 
 namespace VoxelEngine {
 
@@ -57,10 +57,8 @@ namespace VoxelEngine {
 
     glUseProgram(_shaderProgram);
 
-
     _renderer.Render(_model);
 
-    
     glfwSwapBuffers(_window);
     glfwPollEvents();
     glfwSwapInterval(1);
@@ -114,34 +112,25 @@ namespace VoxelEngine {
 
                                                  // bottom
                                                  3, 7, 0, 4, 0, 7};
-    
+
     std::vector<glm::vec3> _voxels;
     for (int x = 0; x < 10; ++x)
       for (int y = 0; y < 5; ++y)
         for (int z = 0; z < 5; ++z) {
-          _voxels.push_back(glm::vec3{
-            static_cast<float>(-x * 2),
-            static_cast<float>(y * 2),
-            static_cast<float>(-z * 2)
-          });
+          _voxels.push_back(glm::vec3{static_cast<float>(-x * 2),
+                                      static_cast<float>(y * 2),
+                                      static_cast<float>(-z * 2)});
         }
 
     std::vector<glm::vec3> g_color_buffer_data;
-    //g_color_buffer_data.reserve(250);
+    // g_color_buffer_data.reserve(250);
 
     for (int i = 0; i < 250; ++i) {
       g_color_buffer_data.push_back(glm::vec3{
-        (rand() % 10) * 0.1,
-        (rand() % 10) * 0.1,
-        (rand() % 10) * 0.1
-      });
+          (rand() % 10) * 0.1, (rand() % 10) * 0.1, (rand() % 10) * 0.1});
     }
 
-
-    _model = VoxelModel{
-      .voxels = _voxels,
-      .colors = g_color_buffer_data
-    };
+    _model = VoxelModel{.voxels = _voxels, .colors = g_color_buffer_data};
 
     std::cout << _model.voxels.size();
 

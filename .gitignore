@@ -7,3 +7,6 @@
 [Bb]uild/
 [Bb]in/
 [Oo]bj/
+
+# External modules
+[Ee]xternal/

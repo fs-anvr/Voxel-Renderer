@@ -1,6 +1,7 @@
+#include "public/App.hpp"
+
 #include <iostream>
 
-#include "public/App.hpp"
 #include "private/Window.hpp"
 
 namespace VoxelEngine {

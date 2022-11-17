@@ -1,8 +1,8 @@
 #pragma once
 
-#include <cstdint>
-
 #include <glad/gl.h>
+
+#include <cstdint>
 
 #include "VoxelModel.hpp"
 
@@ -39,10 +39,10 @@ static const GLint voxelIndex[] = {
 // clang-format on
 
 class Renderer {
-  GLuint voxelVertexBuffer; // костыль?
-  GLuint voxelIndexBuffer;  // костыль?
-  GLuint colorBuffer; // костыль?
-  GLuint VBO; // костыль?
+  GLuint voxelVertexBuffer;  // костыль?
+  GLuint voxelIndexBuffer;   // костыль?
+  GLuint colorBuffer;        // костыль?
+  GLuint VBO;                // костыль?
 
   VoxelModel _model;  // костыль!
 
