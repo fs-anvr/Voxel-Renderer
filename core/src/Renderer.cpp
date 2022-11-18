@@ -7,6 +7,11 @@
 
 namespace VoxelEngine {
 
+GLuint Renderer::voxelVertexBuffer;
+GLuint Renderer::voxelIndexBuffer;
+GLuint Renderer::colorBuffer;
+GLuint Renderer::VBO;
+
 Renderer::Renderer() {}
 
 Renderer::~Renderer() {}
@@ -51,8 +56,8 @@ void Renderer::Render(const VoxelModel& model) {
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
   glVertexAttribDivisor(2, 1);
-
-  glDrawElementsInstanced(GL_TRIANGLES, 36, GL_UNSIGNED_INT,
+  
+  glDrawElementsInstanced(GL_TRIANGLES, VOXEL_VERTEX_NUM, GL_UNSIGNED_INT,
                           static_cast<void*>(0), model.voxels.size());
 }
 }  // namespace VoxelEngine

@@ -10,7 +10,7 @@
 #include <string>
 
 #include "private/Renderer.hpp"
-#include "private/ShaderLoader.hpp"
+#include "private/ShaderProgram.hpp"
 #include "private/VoxelModel.hpp"
 
 namespace VoxelEngine {
@@ -47,15 +47,13 @@ namespace VoxelEngine {
                     glm::vec3(0, 1, 0)     // top
         );
 
-    static glm::mat4 modelMatrix = glm::mat4(1.0);
+    glm::mat4 MVP = projectionMaxtrix * viewMatrix * _model.transform;
 
-    glm::mat4 MVP = projectionMaxtrix * viewMatrix * modelMatrix;
-
-    static GLuint MatrixID = glGetUniformLocation(_shaderProgram, "MVP");
+    static GLuint MatrixID = glGetUniformLocation(_shaderProgram.id, "MVP");
 
     glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
 
-    glUseProgram(_shaderProgram);
+    glUseProgram(_shaderProgram.id);
 
     _renderer.Render(_model);
 
@@ -84,34 +82,11 @@ namespace VoxelEngine {
       std::cout << "GLAD LOAD ISSUE" << std::endl;
     }
 
-    _shaderProgram = ShaderLoader::LoadShaders(
+    _shaderProgram = ShaderProgram(
         "C:\\Users\\fsanv\\my_projects\\voxel-engine\\core\\src\\VertexShader."
         "glsl",
         "C:\\Users\\fsanv\\my_projects\\voxel-"
         "engine\\core\\src\\FragmentShader.glsl");
-
-    static const GLfloat g_vertex_buffer_data[] = {
-        0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-
-        0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f};
-
-    static const GLuint g_index_buffer_data[] = {// front
-                                                 0, 3, 1, 2, 1, 3,
-
-                                                 // back
-                                                 4, 7, 5, 6, 5, 7,
-
-                                                 // right
-                                                 3, 7, 2, 6, 2, 7,
-
-                                                 // left
-                                                 0, 4, 1, 5, 1, 4,
-
-                                                 // top
-                                                 2, 6, 1, 5, 1, 6,
-
-                                                 // bottom
-                                                 3, 7, 0, 4, 0, 7};
 
     std::vector<glm::vec3> _voxels;
     for (int x = 0; x < 10; ++x)
@@ -123,7 +98,6 @@ namespace VoxelEngine {
         }
 
     std::vector<glm::vec3> g_color_buffer_data;
-    // g_color_buffer_data.reserve(250);
 
     for (int i = 0; i < 250; ++i) {
       g_color_buffer_data.push_back(glm::vec3{
@@ -132,9 +106,6 @@ namespace VoxelEngine {
 
     _model = VoxelModel{.voxels = _voxels, .colors = g_color_buffer_data};
 
-    std::cout << _model.voxels.size();
-
-    _renderer = Renderer();
     _renderer.Init();
 
     return true;

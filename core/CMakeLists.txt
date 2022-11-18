@@ -10,7 +10,7 @@ set(ENGINE_PUBLIC_INCLUDES
 
 set(ENGINE_PRIVATE_INCLUDES
   include/private/Window.hpp
-  include/private/ShaderLoader.hpp
+  include/private/ShaderProgram.hpp
   include/private/VoxelModel.hpp # or public?
   include/private/Renderer.hpp
 )
@@ -18,7 +18,7 @@ set(ENGINE_PRIVATE_INCLUDES
 set(ENGINE_PRIVATE_SOURCES
   src/App.cpp
   src/Window.cpp
-  src/ShaderLoader.cpp
+  src/ShaderProgram.cpp
   src/Renderer.cpp
 )
 

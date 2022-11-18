@@ -9,6 +9,7 @@
 namespace VoxelEngine {
 
 // clang-format off
+const std::int32_t VOXEL_VERTEX_NUM = 36;
 
 static const GLfloat voxelVertex[] = {
   0.0f, 0.0f, 1.0f,
@@ -39,12 +40,10 @@ static const GLint voxelIndex[] = {
 // clang-format on
 
 class Renderer {
-  GLuint voxelVertexBuffer;  // костыль?
-  GLuint voxelIndexBuffer;   // костыль?
-  GLuint colorBuffer;        // костыль?
-  GLuint VBO;                // костыль?
-
-  VoxelModel _model;  // костыль!
+  static GLuint voxelVertexBuffer;  // костыль?
+  static GLuint voxelIndexBuffer;   // костыль?
+  static GLuint colorBuffer;        // костыль?
+  static GLuint VBO;                // костыль?
 
  public:
   Renderer();

@@ -1,24 +1,16 @@
 #pragma once
 
-#include <glad/gl.h>
-
 #include <cstdint>
-#include <glm/glm.hpp>
 #include <vector>
 
-namespace VoxelEngine {
+#include <glm/glm.hpp>
 
-template <typename T>
-struct Vec3 {
-  T x;
-  T y;
-  T z;
-};
+namespace VoxelEngine {
 
 struct VoxelModel {
   std::vector<glm::vec3> voxels;
   std::vector<glm::vec3> colors;
-  // MVP
+  glm::mat4 transform = glm::mat4(1.0);
 };
 
 }  // namespace VoxelEngine

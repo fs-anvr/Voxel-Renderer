@@ -7,6 +7,7 @@
 
 #include "Renderer.hpp"
 #include "VoxelModel.hpp"
+#include "ShaderProgram.hpp"
 
 class GLFWwindow;
 typedef unsigned int GLuint;
@@ -47,7 +48,7 @@ class Window {
   GLFWwindow* _window;
   bool _isInitialized;  // костыль?
 
-  GLuint _shaderProgram;  // костыль?
+  ShaderProgram _shaderProgram;  // костыль?
 
   VoxelModel _model;   // костыль?
   Renderer _renderer;  // костыль?
