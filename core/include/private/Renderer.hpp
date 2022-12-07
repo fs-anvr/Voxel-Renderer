@@ -1,10 +1,11 @@
 #pragma once
 
+#include "private/VoxelModel.hpp"
+#include "private/Voxel.hpp"
+
 #include <glad/gl.h>
 
 #include <cstdint>
-
-#include "VoxelModel.hpp"
 
 namespace VoxelEngine {
 
@@ -14,7 +15,7 @@ class Renderer {
   ~Renderer();
 
   static void Init();
-  //TODO: static void Render(const Voxel&);
+  static void Render(const Voxel&);
   static void Render(const VoxelModel&);
 
  private:

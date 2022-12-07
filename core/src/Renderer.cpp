@@ -92,4 +92,26 @@ void Renderer::Render(const VoxelModel& model) {
   glDrawElementsInstanced(GL_TRIANGLES, _voxelVertexSize, GL_UNSIGNED_INT,
                           static_cast<void*>(0), model.voxels.size());
 }
+
+void Renderer::Render(const Voxel& voxel) {
+  glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(voxel.color), &voxel.color, GL_STATIC_DRAW);
+
+  glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(voxel.position), &voxel.position, GL_STATIC_DRAW);
+
+  glEnableVertexAttribArray(1);
+  glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+  glVertexAttribDivisor(1, 1);
+
+  glEnableVertexAttribArray(2);
+  glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+  glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+  glVertexAttribDivisor(2, 1);
+
+  glDrawElements(GL_TRIANGLES, _voxelVertexSize, GL_UNSIGNED_INT,
+                          static_cast<void*>(0));
+}
+
 }  // namespace VoxelEngine
