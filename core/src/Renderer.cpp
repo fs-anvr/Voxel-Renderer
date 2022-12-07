@@ -7,27 +7,59 @@
 
 namespace VoxelEngine {
 
-GLuint Renderer::voxelVertexBuffer;
-GLuint Renderer::voxelIndexBuffer;
-GLuint Renderer::colorBuffer;
-GLuint Renderer::VBO;
+GLuint Renderer::_voxelVertexBuffer;
+GLuint Renderer::_voxelIndexBuffer;
+GLuint Renderer::_colorBuffer;
+GLuint Renderer::_VBO;
+
+const std::int32_t Renderer::_voxelVertexSize = 36;
+
+// clang-format off
+
+const GLfloat Renderer::_voxelVertex[] = {
+  0.0f, 0.0f, 1.0f,
+  0.0f, 1.0f, 1.0f,
+  1.0f, 1.0f, 1.0f,
+  1.0f, 0.0f, 1.0f,
+  0.0f, 0.0f, 0.0f,
+  0.0f, 1.0f, 0.0f,
+  1.0f, 1.0f, 0.0f,
+  1.0f, 0.0f, 0.0f
+};
+
+const GLint Renderer::_voxelIndex[] = {
+  // front
+  0, 3, 1, 2, 1, 3,
+  // back
+  4, 7, 5, 6, 5, 7,
+  // right
+  3, 7, 2, 6, 2, 7,
+  // left
+  0, 4, 1, 5, 1, 4,
+  // top
+  2, 6, 1, 5, 1, 6,
+  // bottom
+  3, 7, 0, 4, 0, 7
+};
+
+// clang-format on
 
 Renderer::Renderer() {}
 
 Renderer::~Renderer() {}
 
 void Renderer::Init() {
-  glGenBuffers(1, &voxelVertexBuffer);
-  glGenBuffers(1, &voxelIndexBuffer);
-  glGenBuffers(1, &colorBuffer);
-  glGenBuffers(1, &VBO);
+  glGenBuffers(1, &_voxelVertexBuffer);
+  glGenBuffers(1, &_voxelIndexBuffer);
+  glGenBuffers(1, &_colorBuffer);
+  glGenBuffers(1, &_VBO);
 
-  glBindBuffer(GL_ARRAY_BUFFER, voxelVertexBuffer);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(voxelVertex), &voxelVertex,
+  glBindBuffer(GL_ARRAY_BUFFER, _voxelVertexBuffer);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(_voxelVertex), &_voxelVertex,
                GL_STATIC_DRAW);
 
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, voxelIndexBuffer);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(voxelIndex), &voxelIndex,
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _voxelIndexBuffer);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_voxelIndex), &_voxelIndex,
                GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(0);
@@ -39,25 +71,25 @@ void Renderer::Init() {
 }
 
 void Renderer::Render(const VoxelModel& model) {
-  glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
+  glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
   glBufferData(GL_ARRAY_BUFFER, sizeof(model.colors[0]) * model.colors.size(),
                &model.colors[0], GL_STATIC_DRAW);
 
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, _VBO);
   glBufferData(GL_ARRAY_BUFFER, sizeof(model.voxels[0]) * model.voxels.size(),
                &model.voxels[0], GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(1);
-  glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
+  glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
   glVertexAttribDivisor(1, 1);
 
   glEnableVertexAttribArray(2);
-  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBindBuffer(GL_ARRAY_BUFFER, _VBO);
   glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
   glVertexAttribDivisor(2, 1);
   
-  glDrawElementsInstanced(GL_TRIANGLES, VOXEL_VERTEX_NUM, GL_UNSIGNED_INT,
+  glDrawElementsInstanced(GL_TRIANGLES, _voxelVertexSize, GL_UNSIGNED_INT,
                           static_cast<void*>(0), model.voxels.size());
 }
 }  // namespace VoxelEngine
