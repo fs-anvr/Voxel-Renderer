@@ -9,15 +9,18 @@
 #include <iostream>
 #include <string>
 
+#include "private/Camera.hpp"
 #include "private/Renderer.hpp"
 #include "private/ShaderProgram.hpp"
 #include "private/VoxelModel.hpp"
 
 namespace VoxelEngine {
 
-  Window::Window(uint16_t width, uint16_t height, std::string title)
+// TODO: вынести лишний код из Window
+
+Window::Window(uint16_t width, uint16_t height, std::string title)
     : _width(width), _height(height), _title(title) {
-      _isInitialized = Init();
+  _isInitialized = Init();
     }
 
   Window::~Window() {
@@ -32,7 +35,7 @@ namespace VoxelEngine {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     static double FoV = 90;
-    static double aspectRatio = 16 / 9;
+    static double aspectRatio = 16.0f / 9.0f;
 
     static glm::mat4 projectionMaxtrix = glm::perspective (
       glm::radians(FoV),
@@ -43,11 +46,24 @@ namespace VoxelEngine {
 
     static glm::mat4 viewMatrix =
         glm::lookAt(glm::vec3(10, 10, 5),  // camera position
-                    glm::vec3(0, 5, 0),    // look at
-                    glm::vec3(0, 1, 0)     // top
+                    glm::vec3(0, 5, 0),    // target
+                    glm::vec3(0, 1, 0)     // up
         );
 
-    glm::mat4 MVP = projectionMaxtrix * viewMatrix * _model.transform;
+    constexpr double radius = 20.0;
+    double CamX = sin(glfwGetTime()) * radius;
+    double CamZ = cos(glfwGetTime()) * radius;
+    glm::mat4 view;
+
+    Camera camera;
+
+    camera.Position = glm::vec3(CamX, 3.0, CamZ);
+    camera.Target = glm::vec3(0.0, 0.0, 0.0);
+    camera.Up = glm::vec3(0.0, 1.0, 0.0);
+
+    // glm::mat4 MVP = projectionMaxtrix * viewMatrix * _model.transform;
+
+    glm::mat4 MVP = camera.Projection() * camera.View() * _model.transform;
 
     static GLuint MatrixID = glGetUniformLocation(_shaderProgram.id, "MVP");
 
@@ -56,6 +72,8 @@ namespace VoxelEngine {
     glUseProgram(_shaderProgram.id);
 
     _renderer.Render(_model);
+    //_renderer.Render(Voxel{glm::vec3(0.0, 0.0, 0.0), (glm::vec3(0.0, 1.0,
+    //0.0))});
 
     glfwSwapBuffers(_window);
     glfwPollEvents();

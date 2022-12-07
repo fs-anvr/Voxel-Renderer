@@ -4,6 +4,8 @@ layout(location = 0) in vec3 vertexPositionModelspace;
 layout(location = 1) in vec3 vertexColor;
 layout(location = 2) in vec3 offset;
 
+// TODO: передавать две матрицы: от камеры и от объекта. считать в шейдере
+
 uniform mat4 MVP;
 
 out vec3 fragmentColor;

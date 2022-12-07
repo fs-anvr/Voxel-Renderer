@@ -8,18 +8,11 @@
 #include <string>
 #include <vector>
 
+#include "public/IO.hpp"
+
 namespace VoxelEngine {
 
-class FileLoader {
- public:
-  static std::string FromFile(std::string filePath) {
-    std::string result;
-    std::fstream stream(filePath, std::ios::in);
-    result.assign(std::istreambuf_iterator<char>(stream), std::istreambuf_iterator<char>());
-    stream.close();
-    return std::move(result);
-  }
-};
+// TODO: вынести код обработки ошибок. а ещё лучше оформить callback'и
 
 ShaderProgram::ShaderProgram() : id(0) {}
 
@@ -29,10 +22,10 @@ ShaderProgram::ShaderProgram(std::string vertexFilePath, std::string fragmentFil
 
   GLuint ShaderProgram::LoadShaders(std::string vertexFilePath, std::string fragmentFilePath) {
     GLuint vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-    std::string vertexShaderSource = FileLoader::FromFile(vertexFilePath);
+    std::string vertexShaderSource = IO::FromFile(vertexFilePath);
 
     GLuint fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
-    std::string fragmentShaderSource = FileLoader::FromFile(fragmentFilePath);
+    std::string fragmentShaderSource = IO::FromFile(fragmentFilePath);
 
     CompileShader(vertexShaderSource, vertexShaderID);
 
@@ -47,7 +40,7 @@ ShaderProgram::ShaderProgram(std::string vertexFilePath, std::string fragmentFil
   }
 
   void ShaderProgram::CompileShader(std::string shaderSource, GLuint shaderID) {
-    /* compile vertex shader */
+    /* compile shader */
     char const * VertexSourcePointer = shaderSource.c_str();
     glShaderSource(shaderID, 1, &VertexSourcePointer , NULL);
     glCompileShader(shaderID);
@@ -55,7 +48,7 @@ ShaderProgram::ShaderProgram(std::string vertexFilePath, std::string fragmentFil
     GLint result = GL_FALSE;
     int infoLogLength = 0;
 
-    /* check vertex shader */
+    /* check shader */
     glGetShaderiv(shaderID, GL_COMPILE_STATUS, &result);
     glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &infoLogLength);
     if (infoLogLength > 0) {

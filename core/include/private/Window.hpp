@@ -15,11 +15,6 @@ typedef unsigned int GLuint;
 namespace VoxelEngine {
 
 class Window {
-  struct InstanceData {
-    glm::vec3 color;
-    glm::vec3 offset;
-  };
-
  public:
   Window(uint16_t width, uint16_t height, std::string title);
   ~Window();
@@ -40,6 +35,8 @@ class Window {
   Window(Window&&) = delete;
   Window& operator=(const Window&) = delete;
   Window& operator=(Window&&) = delete;
+
+  // TODO: вынести всё состояние, не относящиеся к окну
 
   uint16_t _width;
   uint16_t _height;
