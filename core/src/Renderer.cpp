@@ -31,15 +31,15 @@ const GLint Renderer::_voxelIndex[] = {
   // front
   0, 3, 1, 2, 1, 3,
   // back
-  4, 7, 5, 6, 5, 7,
+  4, 5, 7, 6, 7, 5,
   // right
   3, 7, 2, 6, 2, 7,
   // left
-  0, 4, 1, 5, 1, 4,
+  0, 1, 4, 5, 4, 1,
   // top
   2, 6, 1, 5, 1, 6,
   // bottom
-  3, 7, 0, 4, 0, 7
+  3, 0, 7, 4, 7, 0
 };
 
 // clang-format on
