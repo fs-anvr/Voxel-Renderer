@@ -7,13 +7,19 @@ namespace VoxelEngine {
 
 class Camera {
  public:
-  glm::vec3 Position;
-  glm::vec3 Target;
-  glm::vec3 Up;
+  glm::vec3 position;
+  float xAngle;
+  float yAngle;
 
   Camera();
 
   ~Camera();
+
+  glm::vec3 Direction() const;
+
+  glm::vec3 Right() const;
+
+  glm::vec3 Up() const;
 
   // TODO: сделать разные виды камер (не только перспективу)
   //  enum и вид камеры ИЛИ разные методы?
@@ -23,9 +29,6 @@ class Camera {
   glm::mat4 View() const;
 
  private:
-  // glm::vec3 _direction;
-  // glm::vec3 _right;
-
   double _fov = 60.0;
   double _aspect = 16.0 / 9.0;
   double _near = 0.01;
