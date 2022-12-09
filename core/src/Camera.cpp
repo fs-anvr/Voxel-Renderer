@@ -4,6 +4,8 @@
 
 namespace VoxelEngine {
 
+//TODO: абстрагировать от углов эйлера
+
 Camera::Camera() : position(glm::vec3(0.0f, 0.0f, 0.0f)), xAngle(0.0f), yAngle(0.0f) {}
 
 Camera::Camera(

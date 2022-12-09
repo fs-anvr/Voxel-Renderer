@@ -13,6 +13,7 @@
 #include "private/Renderer.hpp"
 #include "private/ShaderProgram.hpp"
 #include "private/VoxelModel.hpp"
+#include "private/Event.hpp"
 
 namespace VoxelEngine {
 
@@ -43,23 +44,23 @@ void ProcessInputKeyboard(GLFWwindow* window, Camera* camera) {
   }
 }
 
-void mouse_callback(GLFWwindow* window, double posX, double posY) {
-  int windowWidth;
-  int windowHeight;
-  glfwGetWindowSize(window, &windowWidth, &windowHeight);
+void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
+  int wightWindow;
+  int heightWindow;
+  glfwGetWindowSize(window, &wightWindow, &heightWindow);
 
-  float lastX = windowWidth / 2.0f;
-  float lastY = windowHeight / 2.0f;
+  float xCenter = wightWindow / 2.0f;
+  float yCenter = heightWindow / 2.0f;
 
   if (firstMouseInput) {
-    lastX = posX;
-    lastY = posY;
+    xCenter = xPos;
+    yCenter = yPos;
     firstMouseInput = false;
   }
 
   const float kSpeedMouseRotate = 5000.0f;
-  xAngleDelta = kSpeedMouseRotate * (lastX - posX) / windowWidth;
-  yAngleDelta = kSpeedMouseRotate * (lastY - posY) / windowHeight;
+  xAngleDelta = kSpeedMouseRotate * (xCenter - xPos) / wightWindow;
+  yAngleDelta = kSpeedMouseRotate * (yCenter - yPos) / heightWindow;
 }
 
 void mouse_button_callback(GLFWwindow* window, int button, int action,
@@ -79,9 +80,9 @@ void mouse_button_callback(GLFWwindow* window, int button, int action,
 }
 
 Window::Window(uint16_t width, uint16_t height, std::string title)
-    : _width(width), _height(height), _title(title) {
+  : _width(width), _height(height), _title(title) {
   _isInitialized = Init();
-    }
+  }
 
   Window::~Window() {
     glfwDestroyWindow(_window);
@@ -136,6 +137,8 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(_window);
+    /* User data (global) */
+    glfwSetWindowUserPointer(_window, this);
 
     if (gladLoadGL(static_cast<GLADloadfunc>(glfwGetProcAddress)) == false) {
       std::cout << "GLAD LOAD ISSUE" << std::endl;
@@ -170,9 +173,33 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     _camera.xAngle = 135.0;
     _camera.yAngle = 0.0;
 
-    glfwSetMouseButtonCallback(this->_window, mouse_button_callback);
+    //glfwSetMouseButtonCallback(this->_window, mouse_button_callback);
+
+    //glfwSetCursorPosCallback(_window, mouseMoveCallback);
+    //glfwSetMouseButtonCallback(_window, mouseButtonCallback);
 
     return true;
+  }
+
+  void Window::setCallback(EventCallback callback) { _eventCallback = callback; }
+
+
+  void Window::mouseMoveCallback(GLFWwindow* window, double x, double y) {
+    auto& handle = *static_cast<Window*>(glfwGetWindowUserPointer(window));
+    MouseMoveEvent event(x, y);
+    handle._eventCallback(event);
+  }
+
+  void Window::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+    auto& handle = *static_cast<Window*>(glfwGetWindowUserPointer(window));
+
+    if (action == GLFW_PRESS) {
+      MouseButtonPressEvent event(button, action, mods);
+      handle._eventCallback(event);
+    } else if (action == GLFW_RELEASE) {
+      MouseButtonReleaseEvent event(button, action, mods);
+      handle._eventCallback(event);
+    }
   }
 
 }  // namespace VoxelEngine

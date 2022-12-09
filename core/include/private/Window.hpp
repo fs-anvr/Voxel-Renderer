@@ -1,14 +1,17 @@
 #pragma once
 
 #include <cstdint>
-#include <glm/glm.hpp>
 #include <string>
 #include <vector>
+#include <functional>
+
+#include <glm/glm.hpp>
 
 #include "Camera.hpp"
 #include "Renderer.hpp"
 #include "ShaderProgram.hpp"
 #include "VoxelModel.hpp"
+#include "Event.hpp"
 
 class GLFWwindow;
 typedef unsigned int GLuint;
@@ -16,7 +19,9 @@ typedef unsigned int GLuint;
 namespace VoxelEngine {
 
 class Window {
+  using EventCallback = std::function<void(Event&)>;
  public:
+
   Window(uint16_t width, uint16_t height, std::string title);
   ~Window();
 
@@ -28,6 +33,12 @@ class Window {
   uint16_t Height() const { return _height; }
   std::string Title() const { return _title; }
   bool IsInitialized() const { return _isInitialized; }
+
+  void setCallback(EventCallback callback);
+
+  static void mouseMoveCallback(GLFWwindow* window, double x, double y);
+
+  static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
  private:
   bool Init();
@@ -42,6 +53,7 @@ class Window {
   uint16_t _width;
   uint16_t _height;
   std::string _title;
+  EventCallback _eventCallback;
 
   GLFWwindow* _window;
   bool _isInitialized;  // костыль?

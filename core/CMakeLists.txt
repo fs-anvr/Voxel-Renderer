@@ -13,10 +13,11 @@ set(ENGINE_PRIVATE_INCLUDES
   include/private/Window.hpp
   include/private/Camera.hpp
   include/private/ShaderProgram.hpp
-  
   include/private/Renderer.hpp
   include/private/VoxelModel.hpp
   include/private/Voxel.hpp
+  include/private/Time.hpp
+  include/private/Event.hpp
 )
 
 set(ENGINE_PRIVATE_SOURCES

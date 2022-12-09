@@ -3,9 +3,10 @@
 #include <cstdint>
 #include <string>
 
-namespace VoxelEngine {
+#include "private/Window.hpp"
+#include "private/Event.hpp"
 
-class Window;
+namespace VoxelEngine {
 
 class App {
  public:
@@ -23,6 +24,7 @@ class App {
 
  private:
   Window* _window;
+  EventDispatcher eventDispatcher;
 };
 
 }  // namespace VoxelEngine
