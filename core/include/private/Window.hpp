@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Renderer.hpp"
-#include "VoxelModel.hpp"
-#include "ShaderProgram.hpp"
-#include "Camera.hpp"
-
 #include <cstdint>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
+
+#include "Camera.hpp"
+#include "Renderer.hpp"
+#include "ShaderProgram.hpp"
+#include "VoxelModel.hpp"
 
 class GLFWwindow;
 typedef unsigned int GLuint;
@@ -50,8 +50,7 @@ class Window {
 
   VoxelModel _model;   // костыль?
   Renderer _renderer;  // костыль?
-  Camera _camera;  // костыль?
-
+  Camera _camera;      // костыль?
 };
 
 }  // namespace VoxelEngine
