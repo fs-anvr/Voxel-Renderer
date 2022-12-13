@@ -7,7 +7,6 @@
 
 #include <glm/glm.hpp>
 
-#include "Camera.hpp"
 #include "Renderer.hpp"
 #include "ShaderProgram.hpp"
 #include "VoxelModel.hpp"
@@ -40,6 +39,8 @@ class Window {
 
   static void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 
+  static void keyboardButtonCallback(GLFWwindow* window, int button, int scancode, int action, int mods);
+
  private:
   bool Init();
 
@@ -62,7 +63,6 @@ class Window {
 
   VoxelModel _model;   // костыль?
   Renderer _renderer;  // костыль?
-  Camera _camera;      // костыль?
 };
 
 }  // namespace VoxelEngine

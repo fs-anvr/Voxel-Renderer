@@ -10,18 +10,18 @@ class Time {
     return currentFrame;
   }
 
-  double GetDeltaTime() {
+  double DeltaTime() {
     return currentFrame - previousFrame;
   }
 
   Time() : previousFrame(0), currentFrame(0) {}
 
- private:
   void Update() {
     previousFrame = currentFrame;
     currentFrame = glfwGetTime();
   }
 
+ private:
   double previousFrame;
   double currentFrame;
 };

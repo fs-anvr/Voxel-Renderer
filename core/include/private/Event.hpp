@@ -1,8 +1,12 @@
 #pragma once
 
+#include "public/Keys.hpp"
+
 #include <cstdint>
 #include <string>
 #include <array>
+#include <functional>
+#include <tuple>
 
 namespace VoxelEngine {
 
@@ -17,8 +21,7 @@ class Event {
     MOUSE_BUTTON_PRESS,
     MOUSE_BUTTON_RELEASE,
 
-    EVENTS_COUNT, //  работает только при непрерывных значениях членов, начинающихся с 1
-    BASE_EVENT
+    EVENTS_COUNT //  работает только при непрерывных значениях членов, начинающихся с 1
   };
 
   virtual ~Event() = default;
@@ -35,20 +38,17 @@ class Event {
 
 class MouseMoveEvent : public Event {
  public:
-  MouseMoveEvent(double x, double y)
-    :
-    x(x),
-    y(y) {}
+  MouseMoveEvent(double x, double y);
 
   ~MouseMoveEvent() override = default;
 
-  std::string format() const override {
-    return name + ": " + std::to_string(x) + " " + std::to_string(y);
-  }
+  std::string format() const override;
 
-  std::string Name() const override { return name; }
+  std::string Name() const override;
 
-  EventType Type() const override { return type; }
+  EventType Type() const override;
+
+  std::pair<double, double> Data() const;
 
   static const std::string name;
   static const Event::EventType type;
@@ -57,69 +57,91 @@ class MouseMoveEvent : public Event {
   double x, y;
 };
 
-const std::string MouseMoveEvent::name = "Mouse move";
-const Event::EventType MouseMoveEvent::type = Event::EventType::MOUSE_MOVE;
-
 
 class MouseButtonPressEvent : public Event {
  public:
-  MouseButtonPressEvent(int button, int action, int mods)
-    :
-    button(button),
-    action(action),
-    mods(mods) {}
+  MouseButtonPressEvent(KeyCode button);
 
   ~MouseButtonPressEvent() override = default;
 
-  std::string format() const override {
-    return name + ": " + std::to_string(button) + " " + std::to_string(action);
-  }
+  std::string format() const override;
 
-  std::string Name() const override { return name; }
+  std::string Name() const override;
 
-  EventType Type() const override { return type; }
+  EventType Type() const override;
 
   static const std::string name;
   static const Event::EventType type;
-
- private:
-  int button;
-  int action;
-  int mods;
+  const KeyCode button;
 };
-
-const std::string MouseButtonPressEvent::name = "Mouse button press";
-const Event::EventType MouseButtonPressEvent::type = Event::EventType::MOUSE_BUTTON_PRESS;
 
 class MouseButtonReleaseEvent : public Event {
  public:
-  MouseButtonReleaseEvent(int button, int action, int mods)
-    :
-    button(button),
-    action(action),
-    mods(mods) {}
+  MouseButtonReleaseEvent(KeyCode button);
 
   ~MouseButtonReleaseEvent() override = default;
 
-  std::string format() const override {
-    return name + ": " + std::to_string(button) + " " + std::to_string(action);
-  }
+  std::string format() const override;
 
-  std::string Name() const override { return name; }
+  std::string Name() const override;
 
-  EventType Type() const override { return type; }
+  EventType Type() const override;
 
   static const std::string name;
   static const Event::EventType type;
-
- private:
-  int button;
-  int action;
-  int mods;
+  const KeyCode button;
 };
 
-const std::string MouseButtonReleaseEvent::name = "Mouse button release";
-const Event::EventType MouseButtonReleaseEvent::type = Event::EventType::MOUSE_BUTTON_RELEASE;
+class KeyboardButtonPressEvent : public Event {
+ public:
+  KeyboardButtonPressEvent(KeyCode button);
+
+  ~KeyboardButtonPressEvent() override = default;
+
+  std::string format() const override;
+
+  std::string Name() const override;
+
+  EventType Type() const override;
+
+  static const std::string name;
+  static const Event::EventType type;
+  const KeyCode button;
+};
+
+class KeyboardButtonReleaseEvent : public Event {
+ public:
+  KeyboardButtonReleaseEvent(KeyCode button);
+
+  ~KeyboardButtonReleaseEvent() override = default;
+
+  std::string format() const override;
+
+  std::string Name() const override;
+
+  EventType Type() const override;
+
+  static const std::string name;
+  static const Event::EventType type;
+  const KeyCode button;
+};
+
+class KeyboardButtonRepeatEvent : public Event {
+ public:
+  KeyboardButtonRepeatEvent(KeyCode button);
+
+  ~KeyboardButtonRepeatEvent() override = default;
+
+  std::string format() const override;
+
+  std::string Name() const override;
+
+  EventType Type() const override;
+
+  static const std::string name;
+  static const Event::EventType type;
+  const KeyCode button;
+};
 
 //TODO: concepts для template AddListener
 

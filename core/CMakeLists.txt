@@ -7,6 +7,11 @@ project(${ENGINE_PROJECT_NAME})
 set(ENGINE_PUBLIC_INCLUDES
   include/public/App.hpp
   include/public/IO.hpp
+  include/public/Input.hpp
+  include/public/Keys.hpp
+  include/public/ServiceLocator.hpp
+  include/public/Time.hpp
+  include/public/Scene.hpp
 )
 
 set(ENGINE_PRIVATE_INCLUDES
@@ -16,7 +21,6 @@ set(ENGINE_PRIVATE_INCLUDES
   include/private/Renderer.hpp
   include/private/VoxelModel.hpp
   include/private/Voxel.hpp
-  include/private/Time.hpp
   include/private/Event.hpp
 )
 
@@ -27,6 +31,9 @@ set(ENGINE_PRIVATE_SOURCES
   src/ShaderProgram.cpp
   src/Renderer.cpp
   src/IO.cpp
+  src/Event.cpp
+  src/Input.cpp
+  src/Scene.cpp
 )
 
 add_library(${ENGINE_PROJECT_NAME} STATIC
@@ -40,10 +47,10 @@ target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE src)
 target_compile_features(${ENGINE_PROJECT_NAME} PUBLIC cxx_std_20)
 
 add_subdirectory(../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
-target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glfw)
+target_link_libraries(${ENGINE_PROJECT_NAME} PUBLIC glfw)  # private??
 
 add_subdirectory(../external/glad ${CMAKE_CURRENT_BINARY_DIR}/glad)
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glad)
 
 add_subdirectory(../external/glm ${CMAKE_CURRENT_BINARY_DIR}/glm)
-target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glm)
+target_link_libraries(${ENGINE_PROJECT_NAME} PUBLIC glm)  # private??

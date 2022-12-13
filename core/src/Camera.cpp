@@ -26,6 +26,21 @@ Camera::Camera(
 
 Camera::~Camera() {}
 
+void Camera::MoveInto(data_type x, data_type y, data_type z) {
+  position = glm::vec3(x, y, z);
+}
+
+void Camera::MoveFor(data_type x, data_type y, data_type z) {
+  position += x * glm::normalize(Direction());
+  position += y * glm::normalize(Right());
+  position += z * glm::normalize(Up());
+}
+
+void Camera::RotateForAngle(data_type xAngle, data_type yAngle) {
+  this->xAngle -= xAngle;
+  this->yAngle -= yAngle;
+}
+
 glm::vec3 Camera::Direction() const {
   return glm::vec3(cos(yAngle) * sin(xAngle), sin(yAngle),
                    cos(yAngle) * cos(xAngle));

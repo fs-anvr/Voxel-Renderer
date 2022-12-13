@@ -3,6 +3,9 @@
 #include <iostream>
 
 #include "private/Window.hpp"
+#include "private/Event.hpp"
+#include "public/Input.hpp"
+#include "public/ServiceLocator.hpp"
 
 namespace VoxelEngine {
 
@@ -15,32 +18,56 @@ namespace VoxelEngine {
 
     eventDispatcher.AddListener<MouseMoveEvent>(
       [](MouseMoveEvent& event) {
-          std::cout << event.format() << "MMMMMMMMOOOOOOOOOOVVVVVEEEEEEEEE" << std::endl;
+        std::pair prevPos = Input::Mouse::GetPos();
+        std::pair currentPos = event.Data();
+        double xDelta = currentPos.first - prevPos.first;
+        double yDelta = currentPos.second - prevPos.second;
+        Input::Mouse::SetDeltaPos(xDelta, yDelta);
+        Input::Mouse::SetPos(currentPos.first, currentPos.second);
       }
     );
 
     eventDispatcher.AddListener<MouseButtonPressEvent>(
       [](MouseButtonPressEvent& event) {
-          std::cout << event.format() << "PRESSSSSSSSSSSSSSS" << std::endl;
+        Input::PressKey(event.button);
       }
     );
 
     eventDispatcher.AddListener<MouseButtonReleaseEvent>(
       [](MouseButtonReleaseEvent& event) {
-          std::cout << event.format() << "RELEEEEEEAAASSSSSEEEEEEEE" << std::endl;
+        Input::ReleaseKey(event.button);
+      }
+    );
+
+    eventDispatcher.AddListener<KeyboardButtonPressEvent>(
+      [](KeyboardButtonPressEvent& event) {
+        Input::PressKey(event.button);
+      }
+    );
+
+    eventDispatcher.AddListener<KeyboardButtonReleaseEvent>(
+      [](KeyboardButtonReleaseEvent& event) {
+        Input::ReleaseKey(event.button);
+      }
+    );
+
+    eventDispatcher.AddListener<KeyboardButtonRepeatEvent>(
+      [](KeyboardButtonRepeatEvent& event) {
+        Input::RepeatKey(event.button);
       }
     );
 
     _window->setCallback([&](Event& event){
       eventDispatcher.Dispatch(event);
-      //std::cout << event.format() << std::endl;
+      std::cout << event.format() << std::endl;
     });
 
     if (_window->IsInitialized() == false) return 1;
 
     while (_window->ShoudBeClose() == false) {
-      _window->Update();
+      ServiceLocator::Scene().Update();
       this->Update();
+      _window->Update();
     }
     return 0;
   }
