@@ -14,21 +14,17 @@
 #include "private/ShaderProgram.hpp"
 #include "private/VoxelModel.hpp"
 #include "private/Event.hpp"
+#include "public/Input.hpp"
+
+#include "public/ServiceLocator.hpp"
 
 namespace VoxelEngine {
 
 // TODO: вынести лишний код из Window
 // TODO: вынести камеру / клаву / мышь
 
-float deltaTime = 0.0f;
-float lastFrame = 0.0f;
-
-float xAngleDelta = 0.0f;
-float yAngleDelta = 0.0f;
-bool firstMouseInput = true;
-
 void ProcessInputKeyboard(GLFWwindow* window, Camera* camera) {
-  const float speed = 5 * deltaTime;  // double doesn't work
+  const float speed = 5 * 0.01;//  * deltaTime;  // double doesn't work
 
   if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
     camera->position += speed * camera->Direction();
@@ -41,41 +37,6 @@ void ProcessInputKeyboard(GLFWwindow* window, Camera* camera) {
   }
   if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
     camera->position -= speed * glm::normalize(camera->Right());
-  }
-}
-
-void mouse_callback(GLFWwindow* window, double xPos, double yPos) {
-  int wightWindow;
-  int heightWindow;
-  glfwGetWindowSize(window, &wightWindow, &heightWindow);
-
-  float xCenter = wightWindow / 2.0f;
-  float yCenter = heightWindow / 2.0f;
-
-  if (firstMouseInput) {
-    xCenter = xPos;
-    yCenter = yPos;
-    firstMouseInput = false;
-  }
-
-  const float kSpeedMouseRotate = 5000.0f;
-  xAngleDelta = kSpeedMouseRotate * (xCenter - xPos) / wightWindow;
-  yAngleDelta = kSpeedMouseRotate * (yCenter - yPos) / heightWindow;
-}
-
-void mouse_button_callback(GLFWwindow* window, int button, int action,
-                           int mods) {
-  if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS) {
-    // set mouse pos callback
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-    glfwSetCursorPosCallback(window, mouse_callback);
-  } else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE) {
-    // remove mouse pos callback
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-    glfwSetCursorPosCallback(
-        window, [](GLFWwindow* window, double posX, double posY) {});
-    xAngleDelta = 0.0f;
-    yAngleDelta = 0.0f;
   }
 }
 
@@ -95,18 +56,11 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     glClearColor(0.1, 0.1, 0.1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    float currentFrame = glfwGetTime();
-    deltaTime = currentFrame - lastFrame;
-    lastFrame = currentFrame;
+    //ProcessInputKeyboard(this->_window, &_camera);
 
-    ProcessInputKeyboard(this->_window, &_camera);
+    Camera& camera = ServiceLocator::Camera();
 
-    float cameraSpeed = 0.0005f * deltaTime;
-
-    _camera.xAngle += cameraSpeed * xAngleDelta;
-    _camera.yAngle += cameraSpeed * yAngleDelta;
-
-    glm::mat4 MVP = _camera.Projection() * _camera.View() * _model.transform;
+    glm::mat4 MVP = camera.Projection() * camera.View() * _model.transform;
 
     static GLuint MatrixID = glGetUniformLocation(_shaderProgram.id, "MVP");
 
@@ -169,14 +123,10 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     _model = VoxelModel{.voxels = _voxels, .colors = g_color_buffer_data};
 
     _renderer.Init();
-    _camera.position = glm::vec3(-10.0, 5.0, 10.0);
-    _camera.xAngle = 135.0;
-    _camera.yAngle = 0.0;
 
-    //glfwSetMouseButtonCallback(this->_window, mouse_button_callback);
-
-    //glfwSetCursorPosCallback(_window, mouseMoveCallback);
-    //glfwSetMouseButtonCallback(_window, mouseButtonCallback);
+    glfwSetCursorPosCallback(_window, mouseMoveCallback);
+    glfwSetMouseButtonCallback(_window, mouseButtonCallback);
+    glfwSetKeyCallback(_window, keyboardButtonCallback);
 
     return true;
   }
@@ -184,21 +134,86 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
   void Window::setCallback(EventCallback callback) { _eventCallback = callback; }
 
 
-  void Window::mouseMoveCallback(GLFWwindow* window, double x, double y) {
+  void Window::mouseMoveCallback(GLFWwindow* window, double xPos, double yPos) {
     auto& handle = *static_cast<Window*>(glfwGetWindowUserPointer(window));
-    MouseMoveEvent event(x, y);
+    MouseMoveEvent event(xPos, yPos);
     handle._eventCallback(event);
   }
 
   void Window::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     auto& handle = *static_cast<Window*>(glfwGetWindowUserPointer(window));
+    KeyCode buttonCode;
+
+    switch (button)
+    {
+    case GLFW_MOUSE_BUTTON_RIGHT:
+      buttonCode = KeyCode::MOUSE_RIGHT_BUTTON;
+      break;
+    
+    default:
+      buttonCode = KeyCode::KEYS_COUNT;
+      break;
+    }
 
     if (action == GLFW_PRESS) {
-      MouseButtonPressEvent event(button, action, mods);
+      MouseButtonPressEvent event(buttonCode);
       handle._eventCallback(event);
     } else if (action == GLFW_RELEASE) {
-      MouseButtonReleaseEvent event(button, action, mods);
+      MouseButtonReleaseEvent event(buttonCode);
       handle._eventCallback(event);
+    }
+  }
+
+  void Window::keyboardButtonCallback(GLFWwindow* window, int button, int scancode, int action, int mods) {
+    auto& handle = *static_cast<Window*>(glfwGetWindowUserPointer(window));
+    KeyCode buttonCode;
+
+    switch (button) {
+    case GLFW_KEY_UP:
+      buttonCode = KeyCode::KEYBOARD_UPARROW;
+      break;
+
+    case GLFW_KEY_DOWN:
+      buttonCode = KeyCode::KEYBOARD_DOWNARROW;
+      break;
+
+    case GLFW_KEY_RIGHT:
+      buttonCode = KeyCode::KEYBOARD_RIGHTARROW;
+      break;
+
+    case GLFW_KEY_LEFT:
+      buttonCode = KeyCode::KEYBOARD_LEFTARROW;
+      break;
+    
+    default:
+      buttonCode = KeyCode::KEYS_COUNT;
+      break;
+    }
+
+    switch (action) {
+    case GLFW_PRESS:
+      {
+        KeyboardButtonPressEvent event(buttonCode);
+        handle._eventCallback(event);
+      }
+      break;
+
+    case GLFW_RELEASE:
+      {
+        KeyboardButtonReleaseEvent event(buttonCode);
+        handle._eventCallback(event);
+      }
+      break;
+
+    case GLFW_REPEAT:
+      {
+        KeyboardButtonRepeatEvent event(buttonCode);
+        handle._eventCallback(event);
+      }
+      break;
+    
+    default:
+      break;
     }
   }
 

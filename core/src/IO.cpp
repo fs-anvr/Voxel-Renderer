@@ -17,8 +17,4 @@ std::string IO::FromFile(std::string filePath) {
   return std::move(result);
 }
 
-void Mouse::BindKeysListener(void(*listener)(GLFWwindow*,int,int,int)){
-  //glfwSetMouseButtonCallback(, listener);
-  // как получить окно?
-}
 }  // namespace VoxelEngine
