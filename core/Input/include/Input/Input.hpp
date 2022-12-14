@@ -1,8 +1,13 @@
 #pragma once
 
+// clang-format off
+
 #include <Input/Keys.hpp>
+
 #include <array>
 #include <cstdint>
+
+// clang-format on
 
 namespace VoxelEngine {
 

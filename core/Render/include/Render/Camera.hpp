@@ -1,7 +1,11 @@
 #pragma once
 
+// clang-format off
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
+// clang-format on
 
 namespace VoxelEngine {
 

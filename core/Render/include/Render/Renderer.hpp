@@ -1,10 +1,15 @@
 #pragma once
 
+// clang-format off
+
+#include <Voxel/VoxelModel.hpp>
+#include <Voxel/Voxel.hpp>
+
 #include <glad/gl.h>
 
-#include <Voxel/Voxel.hpp>
-#include <Voxel/VoxelModel.hpp>
 #include <cstdint>
+
+// clang-format on
 
 namespace VoxelEngine {
 

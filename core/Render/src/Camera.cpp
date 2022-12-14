@@ -1,5 +1,10 @@
+// clang-format off
+
 #include <Render/Camera.hpp>
+
 #include <glm/glm.hpp>
+
+// clang-format on
 
 namespace VoxelEngine {
 

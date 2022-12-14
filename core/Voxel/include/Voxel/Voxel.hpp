@@ -1,8 +1,13 @@
 #pragma once
 
-#include <cstdint>
+// clang-format off
+
 #include <glm/glm.hpp>
+
+#include <cstdint>
 #include <vector>
+
+// clang-format off
 
 namespace VoxelEngine {
 

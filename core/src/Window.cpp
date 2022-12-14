@@ -1,21 +1,25 @@
-#include "private/Window.hpp"
+// clang-format off
 
-#include <GLFW/glfw3.h>
-#include <glad/gl.h>
+#include "private/Window.hpp"
+#include "public/ServiceLocator.hpp"
 
 #include <EventSystem/EventSystem.hpp>
-#include <Input/Input.hpp>
-#include <Render/Camera.hpp>
-#include <Render/Renderer.hpp>
+#include <Shaders/ShaderProgram.hpp>
 #include <Voxel/VoxelModel.hpp>
-#include <cstdint>
+#include <Render/Renderer.hpp>
+#include <Render/Camera.hpp>
+#include <Input/Input.hpp>
+
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+
+#include <cstdint>
 #include <iostream>
 #include <string>
 
-#include "private/ShaderProgram.hpp"
-#include "public/ServiceLocator.hpp"
+// clang-format on
 
 namespace VoxelEngine {
 
@@ -79,10 +83,10 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     }
 
     _shaderProgram = ShaderProgram(
-        "C:\\Users\\fsanv\\my_projects\\voxel-engine\\core\\src\\VertexShader."
-        "glsl",
         "C:\\Users\\fsanv\\my_projects\\voxel-"
-        "engine\\core\\src\\FragmentShader.glsl");
+        "engine\\core\\Shaders\\include\\Shaders\\VertexShader.glsl",
+        "C:\\Users\\fsanv\\my_projects\\voxel-"
+        "engine\\core\\Shaders\\include\\Shaders\\FragmentShader.glsl");
 
     std::vector<glm::vec3> _voxels;
     for (int x = 0; x < 10; ++x)

@@ -1,9 +1,13 @@
 #pragma once
 
+// clang-format off
+
+#include <glad/gl.h>
+
 #include <cstdint>
 #include <string>
 
-#include <glad/gl.h>
+// clang-format on
 
 namespace VoxelEngine {
 
@@ -22,9 +26,7 @@ class ShaderProgram {
 
   GLuint CompileShaderProgram(GLuint vertexShaderID, GLuint fragmentShaderID);
 
-  inline void DeleteShader(GLuint shaderID) {
-    glDeleteShader(shaderID);
-  }
+  inline void DeleteShader(GLuint shaderID) { glDeleteShader(shaderID); }
 };
 
 }  // namespace VoxelEngine

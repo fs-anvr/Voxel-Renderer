@@ -53,7 +53,7 @@ endif()
 
 set(ENGINE_PUBLIC_INCLUDES
   include/public/App.hpp
-  include/public/IO.hpp
+  #include/public/IO.hpp
   #include/public/Input.hpp
   #include/public/Keys.hpp
   include/public/ServiceLocator.hpp
@@ -64,7 +64,7 @@ set(ENGINE_PUBLIC_INCLUDES
 set(ENGINE_PRIVATE_INCLUDES
   include/private/Window.hpp
   #include/private/Camera.hpp
-  include/private/ShaderProgram.hpp
+  #include/private/ShaderProgram.hpp
   #include/private/Renderer.hpp
   #include/private/VoxelModel.hpp
   #include/private/Voxel.hpp
@@ -75,9 +75,9 @@ set(ENGINE_PRIVATE_SOURCES
   src/App.cpp
   src/Window.cpp
   #src/Camera.cpp
-  src/ShaderProgram.cpp
+  #src/ShaderProgram.cpp
   #src/Renderer.cpp
-  src/IO.cpp
+  #src/IO.cpp
   #src/Event.cpp
   #src/Input.cpp
   src/Scene.cpp
@@ -102,6 +102,8 @@ add_subdirectory(Input ${CMAKE_CURRENT_BINARY_DIR}/Input)
 add_subdirectory(EventSystem ${CMAKE_CURRENT_BINARY_DIR}/EventSystem)
 add_subdirectory(Render ${CMAKE_CURRENT_BINARY_DIR}/Render)
 add_subdirectory(Voxel ${CMAKE_CURRENT_BINARY_DIR}/Voxel)
+add_subdirectory(Shaders ${CMAKE_CURRENT_BINARY_DIR}/Shaders)
+add_subdirectory(IO ${CMAKE_CURRENT_BINARY_DIR}/IO)
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
@@ -110,6 +112,8 @@ target_link_libraries(${PROJECT_NAME}
     VoxelEngine::EventSystem
     VoxelEngine::Render
     VoxelEngine::Voxel
+    VoxelEngine::Shaders
+    VoxelEngine::IO
 
     glfw # private??
     glm::glm # private??

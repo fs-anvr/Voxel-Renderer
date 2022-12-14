@@ -1,8 +1,11 @@
-#include <GLFW/glfw3.h>
-#include <glad/gl.h>
-
+// clang-format off
 #include <Render/Renderer.hpp>
+
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+
+// clang-format on
 
 namespace VoxelEngine {
 

@@ -1,9 +1,13 @@
 #pragma once
 
+// clang-format off
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
+
+// clang-format on
 
 struct GLFWwindow;
 

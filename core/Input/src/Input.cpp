@@ -1,5 +1,9 @@
+// clang-format off
+
 #include <Input/Input.hpp>
 #include <cstdint>
+
+// clang-format on
 
 namespace VoxelEngine {
 
