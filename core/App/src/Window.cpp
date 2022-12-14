@@ -1,19 +1,13 @@
 // clang-format off
 
-#include "private/Window.hpp"
+#include <App/Window.hpp>
 
 #include <ServiceLocator/ServiceLocator.hpp>
 #include <EventSystem/EventSystem.hpp>
-#include <Shaders/ShaderProgram.hpp>
-#include <Voxel/VoxelModel.hpp>
-#include <Render/Renderer.hpp>
-#include <Render/Camera.hpp>
 #include <Input/Input.hpp>
 
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
 
 #include <cstdint>
 #include <iostream>
@@ -22,9 +16,6 @@
 // clang-format on
 
 namespace VoxelEngine {
-
-// TODO: вынести лишний код из Window
-// TODO: вынести камеру / клаву / мышь
 
 Window::Window(uint16_t width, uint16_t height, std::string title)
   : _width(width), _height(height), _title(title) {
@@ -57,13 +48,12 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
       return false;
     }
 
-    /* Make the window's context current */
     glfwMakeContextCurrent(_window);
-    /* User data (global) */
     glfwSetWindowUserPointer(_window, this);
 
     if (gladLoadGL(static_cast<GLADloadfunc>(glfwGetProcAddress)) == false) {
       std::cout << "GLAD LOAD ISSUE" << std::endl;
+      return false;
     }
 
     glfwSetCursorPosCallback(_window, mouseMoveCallback);

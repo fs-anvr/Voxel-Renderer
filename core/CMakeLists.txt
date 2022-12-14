@@ -51,48 +51,17 @@ endif()
 ##
 ###################################################################################################
 
-set(ENGINE_PUBLIC_INCLUDES
-  include/public/App.hpp
-  #include/public/IO.hpp
-  #include/public/Input.hpp
-  #include/public/Keys.hpp
-  #include/public/ServiceLocator.hpp
-  #include/public/Time.hpp
-  #include/public/Scene.hpp
-)
-
-set(ENGINE_PRIVATE_INCLUDES
-  include/private/Window.hpp
-  #include/private/Camera.hpp
-  #include/private/ShaderProgram.hpp
-  #include/private/Renderer.hpp
-  #include/private/VoxelModel.hpp
-  #include/private/Voxel.hpp
-  #include/private/Event.hpp
-)
-
-set(ENGINE_PRIVATE_SOURCES
-  src/App.cpp
-  src/Window.cpp
-  #src/Camera.cpp
-  #src/ShaderProgram.cpp
-  #src/Renderer.cpp
-  #src/IO.cpp
-  #src/Event.cpp
-  #src/Input.cpp
-  #src/Scene.cpp
+set(PUBLIC_INCLUDE
+  Core.hpp
 )
 
 add_library(${PROJECT_NAME} STATIC
-  ${ENGINE_PUBLIC_INCLUDES}
-  ${ENGINE_PRIVATE_INCLUDES}
-  ${ENGINE_PRIVATE_SOURCES}
+  ${PUBLIC_INCLUDE}
 )
 
 add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
-target_include_directories(${PROJECT_NAME} PRIVATE src)
 
 add_subdirectory(../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
 add_subdirectory(../external/glad ${CMAKE_CURRENT_BINARY_DIR}/glad)
@@ -107,6 +76,7 @@ add_subdirectory(IO ${CMAKE_CURRENT_BINARY_DIR}/IO)
 add_subdirectory(ServiceLocator ${CMAKE_CURRENT_BINARY_DIR}/ServiceLocator)
 add_subdirectory(Scene ${CMAKE_CURRENT_BINARY_DIR}/Scene)
 add_subdirectory(Time ${CMAKE_CURRENT_BINARY_DIR}/Time)
+add_subdirectory(App ${CMAKE_CURRENT_BINARY_DIR}/App)
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
@@ -120,6 +90,7 @@ target_link_libraries(${PROJECT_NAME}
     VoxelEngine::ServiceLocator
     VoxelEngine::Scene
     VoxelEngine::Time
+    VoxelEngine::App
 
     glfw # private??
     glm::glm # private??
@@ -137,6 +108,7 @@ target_link_libraries(${PROJECT_NAME}
 if (NOT PROJECT_TESTING)
   message(STATUS "Тестирование ${PROJECT_NAME} выключено")
 else()
+  #TODO: TESTS
   #add_subdirectory(test)
 endif()
 
@@ -149,5 +121,6 @@ endif()
 if (PROJECT_DOC)
   message(STATUS "Создание документации для ${PROJECT_NAME} выключено")
 else()
+  #TODO: DOCS
   #add_subdirectory(doc)
 endif()

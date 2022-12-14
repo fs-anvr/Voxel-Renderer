@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-#include "public/App.hpp"
+#include <App/App.hpp>
 
 class MyApp : public VoxelEngine::App {
  public:

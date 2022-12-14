@@ -26,11 +26,15 @@ add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Voxel)
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Shaders)
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::ServiceLocator)
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    VoxelEngine::Voxel
+    VoxelEngine::Shaders
+    VoxelEngine::ServiceLocator
+
+    glm::glm
+    glad
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Scene) #FIXME: TRANSITIVE DEPENDENCE!!!
 target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Time) #FIXME: TRANSITIVE DEPENDENCE!!!
-
-target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm)
-target_link_libraries(${PROJECT_NAME} PRIVATE glad)

@@ -1,11 +1,15 @@
-#include "public/App.hpp"
+// clang-format off
 
+#include <App/App.hpp>
+#include <App/Window.hpp>
+
+#include <ServiceLocator/ServiceLocator.hpp>
 #include <EventSystem/EventSystem.hpp>
 #include <Input/Input.hpp>
-#include <ServiceLocator/ServiceLocator.hpp>
+
 #include <iostream>
 
-#include "private/Window.hpp"
+// clang-format on
 
 namespace VoxelEngine {
 

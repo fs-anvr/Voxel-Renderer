@@ -14,5 +14,8 @@ add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Render)
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Scene)
+target_link_libraries(${PROJECT_NAME}
+  PRIVATE
+    VoxelEngine::Render
+    VoxelEngine::Scene
+)

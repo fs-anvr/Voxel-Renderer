@@ -3,11 +3,6 @@
 // clang-format off
 
 #include <EventSystem/EventSystem.hpp>
-#include <Shaders/ShaderProgram.hpp>
-#include <Voxel/VoxelModel.hpp>
-#include <Render/Renderer.hpp>
-
-#include <glm/glm.hpp>
 
 #include <cstdint>
 #include <functional>
@@ -17,7 +12,6 @@
 // clang-format on
 
 class GLFWwindow;
-typedef unsigned int GLuint;
 
 namespace VoxelEngine {
 

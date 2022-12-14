@@ -1,8 +1,13 @@
 #pragma once
 
+// clang-format off
+
 #include <EventSystem/EventSystem.hpp>
+
 #include <cstdint>
 #include <string>
+
+// clang-format on
 
 namespace VoxelEngine {
 
