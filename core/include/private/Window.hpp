@@ -7,10 +7,12 @@
 
 #include <glm/glm.hpp>
 
+#include <EventSystem/EventSystem.hpp>
+
 #include "Renderer.hpp"
 #include "ShaderProgram.hpp"
 #include "VoxelModel.hpp"
-#include "Event.hpp"
+
 
 class GLFWwindow;
 typedef unsigned int GLuint;

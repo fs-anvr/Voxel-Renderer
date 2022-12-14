@@ -14,7 +14,7 @@ std::string IO::FromFile(std::string filePath) {
   std::fstream stream(filePath, std::ios::in);
   result.assign(std::istreambuf_iterator<char>(stream), std::istreambuf_iterator<char>());
   stream.close();
-  return std::move(result);
+  return result;
 }
 
 }  // namespace VoxelEngine

@@ -31,9 +31,9 @@ void Camera::MoveInto(data_type x, data_type y, data_type z) {
 }
 
 void Camera::MoveFor(data_type x, data_type y, data_type z) {
-  position += x * glm::normalize(Direction());
-  position += y * glm::normalize(Right());
-  position += z * glm::normalize(Up());
+  position += x * Direction();
+  position += y * Right();
+  position += z * Up();
 }
 
 void Camera::RotateForAngle(data_type xAngle, data_type yAngle) {
@@ -42,15 +42,15 @@ void Camera::RotateForAngle(data_type xAngle, data_type yAngle) {
 }
 
 glm::vec3 Camera::Direction() const {
-  return glm::vec3(cos(yAngle) * sin(xAngle), sin(yAngle),
-                   cos(yAngle) * cos(xAngle));
+  return glm::normalize(glm::vec3(cos(yAngle) * sin(xAngle), sin(yAngle),
+                   cos(yAngle) * cos(xAngle)));
 }
 
 glm::vec3 Camera::Right() const {
-  return glm::vec3(sin(xAngle - 3.14f / 2.0f), 0, cos(xAngle - 3.14f / 2.0f));
+  return glm::normalize(glm::vec3(sin(xAngle - 3.14f / 2.0f), 0, cos(xAngle - 3.14f / 2.0f)));
 }
 
-glm::vec3 Camera::Up() const { return glm::cross(Right(), Direction()); }
+glm::vec3 Camera::Up() const { return glm::normalize(glm::cross(Right(), Direction())); }
 
 glm::mat4 Camera::Projection() const {
   return glm::perspective(glm::radians(_fov), _aspect, _near, _far);

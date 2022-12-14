@@ -22,8 +22,6 @@ class Camera {
 
   ~Camera();
 
-  //TODO: RotateForAngle(90) methods
-
   //TODO: абстракция своих векторов над glm::vec3
 
   void MoveInto(data_type x, data_type y, data_type z);

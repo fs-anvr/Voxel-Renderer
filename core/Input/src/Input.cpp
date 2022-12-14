@@ -1,9 +1,6 @@
-#include "public/Input.hpp"
-#include "public/Keys.hpp"
+#include <Input/Input.hpp>
 
 #include <cstdint>
-
-#include <GLFW/glfw3.h>
 
 namespace VoxelEngine {
 

@@ -9,36 +9,20 @@
 #include <iostream>
 #include <string>
 
+
+#include <EventSystem/EventSystem.hpp>
+#include <Input/Input.hpp>
+
 #include "private/Camera.hpp"
 #include "private/Renderer.hpp"
 #include "private/ShaderProgram.hpp"
 #include "private/VoxelModel.hpp"
-#include "private/Event.hpp"
-#include "public/Input.hpp"
-
 #include "public/ServiceLocator.hpp"
 
 namespace VoxelEngine {
 
 // TODO: вынести лишний код из Window
 // TODO: вынести камеру / клаву / мышь
-
-void ProcessInputKeyboard(GLFWwindow* window, Camera* camera) {
-  const float speed = 5 * 0.01;//  * deltaTime;  // double doesn't work
-
-  if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) {
-    camera->position += speed * camera->Direction();
-  }
-  if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) {
-    camera->position -= speed * camera->Direction();
-  }
-  if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
-    camera->position += speed * glm::normalize(camera->Right());
-  }
-  if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS) {
-    camera->position -= speed * glm::normalize(camera->Right());
-  }
-}
 
 Window::Window(uint16_t width, uint16_t height, std::string title)
   : _width(width), _height(height), _title(title) {
@@ -55,8 +39,6 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     
     glClearColor(0.1, 0.1, 0.1, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    //ProcessInputKeyboard(this->_window, &_camera);
 
     Camera& camera = ServiceLocator::Camera();
 

@@ -2,9 +2,10 @@
 
 #include <iostream>
 
+#include <EventSystem/EventSystem.hpp>
+#include <Input/Input.hpp>
+
 #include "private/Window.hpp"
-#include "private/Event.hpp"
-#include "public/Input.hpp"
 #include "public/ServiceLocator.hpp"
 
 namespace VoxelEngine {

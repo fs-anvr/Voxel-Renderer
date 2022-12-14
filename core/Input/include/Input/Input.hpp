@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Keys.hpp"
+#include <Input/Keys.hpp>
 
 #include <cstdint>
 #include <array>
@@ -34,7 +34,7 @@ class Input {
 
     static void ShowCursor();
     static void HideCursor();
-    //pass
+
    private:
     Mouse() = delete;
     ~Mouse() = delete;

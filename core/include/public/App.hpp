@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <string>
 
-#include "private/Event.hpp"
+#include <EventSystem/EventSystem.hpp>
 
 namespace VoxelEngine {
 
