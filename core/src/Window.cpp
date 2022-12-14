@@ -1,8 +1,8 @@
 // clang-format off
 
 #include "private/Window.hpp"
-#include "public/ServiceLocator.hpp"
 
+#include <ServiceLocator/ServiceLocator.hpp>
 #include <EventSystem/EventSystem.hpp>
 #include <Shaders/ShaderProgram.hpp>
 #include <Voxel/VoxelModel.hpp>
@@ -37,23 +37,7 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
   }
 
   void Window::Update() {
-    /* clear */
-    
-    glClearColor(0.1, 0.1, 0.1, 1);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    Camera& camera = ServiceLocator::Camera();
-
-    glm::mat4 MVP = camera.Projection() * camera.View() * _model.transform;
-
-    static GLuint MatrixID = glGetUniformLocation(_shaderProgram.id, "MVP");
-
-    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-
-    glUseProgram(_shaderProgram.id);
-
-    _renderer.Render(_model);
-    //_renderer.Render(Voxel{glm::vec3(0.0, 0.0, 0.0), (glm::vec3(0.0, 1.0, 0.0))});
+    ServiceLocator::Renderer().Rerender();
 
     glfwSwapBuffers(_window);
     glfwPollEvents();
@@ -81,32 +65,6 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     if (gladLoadGL(static_cast<GLADloadfunc>(glfwGetProcAddress)) == false) {
       std::cout << "GLAD LOAD ISSUE" << std::endl;
     }
-
-    _shaderProgram = ShaderProgram(
-        "C:\\Users\\fsanv\\my_projects\\voxel-"
-        "engine\\core\\Shaders\\include\\Shaders\\VertexShader.glsl",
-        "C:\\Users\\fsanv\\my_projects\\voxel-"
-        "engine\\core\\Shaders\\include\\Shaders\\FragmentShader.glsl");
-
-    std::vector<glm::vec3> _voxels;
-    for (int x = 0; x < 10; ++x)
-      for (int y = 0; y < 5; ++y)
-        for (int z = 0; z < 5; ++z) {
-          _voxels.push_back(glm::vec3{static_cast<float>(-x * 2),
-                                      static_cast<float>(y * 2),
-                                      static_cast<float>(-z * 2)});
-        }
-
-    std::vector<glm::vec3> g_color_buffer_data;
-
-    for (int i = 0; i < 250; ++i) {
-      g_color_buffer_data.push_back(glm::vec3{
-          (rand() % 10) * 0.1, (rand() % 10) * 0.1, (rand() % 10) * 0.1});
-    }
-
-    _model = VoxelModel{.voxels = _voxels, .colors = g_color_buffer_data};
-
-    _renderer.Init();
 
     glfwSetCursorPosCallback(_window, mouseMoveCallback);
     glfwSetMouseButtonCallback(_window, mouseButtonCallback);

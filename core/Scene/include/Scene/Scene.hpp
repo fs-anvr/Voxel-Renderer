@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Time.hpp"
+#include <Time/Time.hpp>
+
+// TODO: separate Time
 
 namespace VoxelEngine {
 
@@ -9,9 +11,10 @@ class Scene {
   void Update();
 
   Time Time();
+
  private:
   VoxelEngine::Time time;
-  //TODO: граф сцены, объекты, подпространстенное разбиение
+  // TODO: граф сцены, объекты, подпространстенное разбиение
 };
 
 }  // namespace VoxelEngine

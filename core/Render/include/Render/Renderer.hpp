@@ -2,35 +2,29 @@
 
 // clang-format off
 
-#include <Voxel/VoxelModel.hpp>
-#include <Voxel/Voxel.hpp>
-
-#include <glad/gl.h>
-
 #include <cstdint>
 
 // clang-format on
 
 namespace VoxelEngine {
 
+// TODO: Renderer : base class
+// TODO: make OPENGLRenderer
+
 class Renderer {
  public:
-  Renderer();
-  ~Renderer();
+  Renderer() = default;
+  virtual ~Renderer() = default;
 
-  static void Init();
-  static void Render(const Voxel&);
-  static void Render(const VoxelModel&);
+  virtual void Init() = 0;
 
- private:
-  static GLuint _voxelVertexBuffer;
-  static GLuint _voxelIndexBuffer;
-  static GLuint _colorBuffer;
-  static GLuint _VBO;
+  virtual void Rerender() = 0;
 
+ protected:
   static const std::int32_t _voxelVertexSize;
-  static const GLfloat _voxelVertex[];
-  static const GLint _voxelIndex[];
+  static const std::int32_t _voxelIndexSize;
+  static const float _voxelVertex[];
+  static const int _voxelIndex[];
 };
 
 }  // namespace VoxelEngine

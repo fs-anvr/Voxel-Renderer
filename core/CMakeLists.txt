@@ -56,9 +56,9 @@ set(ENGINE_PUBLIC_INCLUDES
   #include/public/IO.hpp
   #include/public/Input.hpp
   #include/public/Keys.hpp
-  include/public/ServiceLocator.hpp
-  include/public/Time.hpp
-  include/public/Scene.hpp
+  #include/public/ServiceLocator.hpp
+  #include/public/Time.hpp
+  #include/public/Scene.hpp
 )
 
 set(ENGINE_PRIVATE_INCLUDES
@@ -80,7 +80,7 @@ set(ENGINE_PRIVATE_SOURCES
   #src/IO.cpp
   #src/Event.cpp
   #src/Input.cpp
-  src/Scene.cpp
+  #src/Scene.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
@@ -104,6 +104,9 @@ add_subdirectory(Render ${CMAKE_CURRENT_BINARY_DIR}/Render)
 add_subdirectory(Voxel ${CMAKE_CURRENT_BINARY_DIR}/Voxel)
 add_subdirectory(Shaders ${CMAKE_CURRENT_BINARY_DIR}/Shaders)
 add_subdirectory(IO ${CMAKE_CURRENT_BINARY_DIR}/IO)
+add_subdirectory(ServiceLocator ${CMAKE_CURRENT_BINARY_DIR}/ServiceLocator)
+add_subdirectory(Scene ${CMAKE_CURRENT_BINARY_DIR}/Scene)
+add_subdirectory(Time ${CMAKE_CURRENT_BINARY_DIR}/Time)
 
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
@@ -114,6 +117,9 @@ target_link_libraries(${PROJECT_NAME}
     VoxelEngine::Voxel
     VoxelEngine::Shaders
     VoxelEngine::IO
+    VoxelEngine::ServiceLocator
+    VoxelEngine::Scene
+    VoxelEngine::Time
 
     glfw # private??
     glm::glm # private??

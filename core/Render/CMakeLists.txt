@@ -4,12 +4,16 @@ project(Render)
 
 set(PUBLIC_INCLUDE
   include/Render/Renderer.hpp
+  include/Render/OpenGLRenderer.hpp
   include/Render/Camera.hpp
+  include/Render/Renderables.hpp
 )
 
 set(PRIVATE_SRC
   src/Renderer.cpp
+  src/OpenGLRenderer.cpp
   src/Camera.cpp
+  src/Renderables.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
@@ -23,6 +27,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Voxel)
-target_link_libraries(${PROJECT_NAME} PUBLIC glm::glm)
-target_link_libraries(${PROJECT_NAME} PUBLIC glfw)
-target_link_libraries(${PROJECT_NAME} PUBLIC glad)
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Shaders)
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::ServiceLocator)
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Scene) #FIXME: TRANSITIVE DEPENDENCE!!!
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Time) #FIXME: TRANSITIVE DEPENDENCE!!!
+
+target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm)
+target_link_libraries(${PROJECT_NAME} PRIVATE glad)

@@ -20,5 +20,5 @@ add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC VoxelEngine::IO)
-target_link_libraries(${PROJECT_NAME} PUBLIC glad)
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::IO)
+target_link_libraries(${PROJECT_NAME} PRIVATE glad)

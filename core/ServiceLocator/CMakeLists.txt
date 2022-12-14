@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(Voxel)
+project(ServiceLocator)
 
 set(PUBLIC_INCLUDE
-  include/Voxel/Voxel.hpp
-  include/Voxel/VoxelModel.hpp
+  include/ServiceLocator/ServiceLocator.hpp
 )
 
 add_library(${PROJECT_NAME} STATIC
@@ -15,6 +14,5 @@ add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
-
-target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm)
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Render)
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Scene)

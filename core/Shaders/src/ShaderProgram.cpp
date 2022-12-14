@@ -88,4 +88,6 @@ GLuint ShaderProgram::CompileShaderProgram(GLuint vertexShaderID,
   return programID;
 }
 
+void ShaderProgram::DeleteShader(GLuint shaderID) { glDeleteShader(shaderID); }
+
 }  // namespace VoxelEngine

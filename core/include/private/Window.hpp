@@ -53,8 +53,6 @@ class Window {
   Window& operator=(const Window&) = delete;
   Window& operator=(Window&&) = delete;
 
-  // TODO: вынести всё состояние, не относящиеся к окну
-
   uint16_t _width;
   uint16_t _height;
   std::string _title;
@@ -62,11 +60,6 @@ class Window {
 
   GLFWwindow* _window;
   bool _isInitialized;  // костыль?
-
-  ShaderProgram _shaderProgram;  // костыль?
-
-  VoxelModel _model;   // костыль?
-  Renderer _renderer;  // костыль?
 };
 
 }  // namespace VoxelEngine
