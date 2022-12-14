@@ -1,8 +1,7 @@
-#include <iostream>
-#include <string>
-
 #include <Input/Input.hpp>
 #include <Input/Keys.hpp>
+#include <iostream>
+#include <string>
 
 #include "public/App.hpp"
 #include "public/ServiceLocator.hpp"

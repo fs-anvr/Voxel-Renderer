@@ -1,10 +1,9 @@
 #pragma once
 
-#include "private/VoxelModel.hpp"
-#include "private/Voxel.hpp"
-
 #include <glad/gl.h>
 
+#include <Voxel/Voxel.hpp>
+#include <Voxel/VoxelModel.hpp>
 #include <cstdint>
 
 namespace VoxelEngine {

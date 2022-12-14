@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(Input)
+project(Render)
 
 set(PUBLIC_INCLUDE
-  include/Input/Input.hpp
-  include/Input/Keys.hpp
+  include/Render/Renderer.hpp
+  include/Render/Camera.hpp
 )
 
 set(PRIVATE_SRC
-  src/Input.cpp
+  src/Renderer.cpp
+  src/Camera.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
@@ -20,3 +21,8 @@ add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Voxel)
+target_link_libraries(${PROJECT_NAME} PUBLIC glm::glm)
+target_link_libraries(${PROJECT_NAME} PUBLIC glfw)
+target_link_libraries(${PROJECT_NAME} PUBLIC glad)

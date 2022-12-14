@@ -3,20 +3,18 @@
 #include <GLFW/glfw3.h>
 #include <glad/gl.h>
 
+#include <EventSystem/EventSystem.hpp>
+#include <Input/Input.hpp>
+#include <Render/Camera.hpp>
+#include <Render/Renderer.hpp>
+#include <Voxel/VoxelModel.hpp>
 #include <cstdint>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
 #include <string>
 
-
-#include <EventSystem/EventSystem.hpp>
-#include <Input/Input.hpp>
-
-#include "private/Camera.hpp"
-#include "private/Renderer.hpp"
 #include "private/ShaderProgram.hpp"
-#include "private/VoxelModel.hpp"
 #include "public/ServiceLocator.hpp"
 
 namespace VoxelEngine {

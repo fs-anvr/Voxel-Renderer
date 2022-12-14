@@ -1,15 +1,14 @@
 #pragma once
 
-#include "private/Voxel.hpp"
-
+#include <Voxel/Voxel.hpp>
 #include <cstdint>
-#include <vector>
-
 #include <glm/glm.hpp>
+#include <vector>
 
 namespace VoxelEngine {
 
-// TODO: модель как набор вокселей (поработать над передачей на отрисовку opengl)
+// TODO: модель как набор вокселей (поработать над передачей на отрисовку
+// opengl)
 
 struct VoxelModel {
   std::vector<glm::vec3> voxels;

@@ -1,18 +1,15 @@
 #pragma once
 
+#include <EventSystem/EventSystem.hpp>
+#include <Render/Renderer.hpp>
+#include <Voxel/VoxelModel.hpp>
 #include <cstdint>
+#include <functional>
+#include <glm/glm.hpp>
 #include <string>
 #include <vector>
-#include <functional>
 
-#include <glm/glm.hpp>
-
-#include <EventSystem/EventSystem.hpp>
-
-#include "Renderer.hpp"
 #include "ShaderProgram.hpp"
-#include "VoxelModel.hpp"
-
 
 class GLFWwindow;
 typedef unsigned int GLuint;

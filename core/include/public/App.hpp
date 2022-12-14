@@ -1,9 +1,8 @@
 #pragma once
 
+#include <EventSystem/EventSystem.hpp>
 #include <cstdint>
 #include <string>
-
-#include <EventSystem/EventSystem.hpp>
 
 namespace VoxelEngine {
 

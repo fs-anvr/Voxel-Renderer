@@ -1,6 +1,7 @@
 #pragma once
 
-#include "private/Camera.hpp"
+#include <Render/Camera.hpp>
+
 #include "public/Scene.hpp"
 
 namespace VoxelEngine {

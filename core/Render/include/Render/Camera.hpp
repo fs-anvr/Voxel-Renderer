@@ -11,18 +11,17 @@ class Camera {
 
   Camera();
 
-  Camera(glm::vec3 pos, data_type xAngle, data_type yAngle, data_type fov = 60.0,
-      data_type aspect = 16.0 / 9.0, data_type near = 0.01,
-      data_type far = 90.0);
+  Camera(glm::vec3 pos, data_type xAngle, data_type yAngle,
+         data_type fov = 60.0, data_type aspect = 16.0 / 9.0,
+         data_type near = 0.01, data_type far = 90.0);
 
-  Camera(float xPos, float yPos, float zPos,
-    data_type xAngle, data_type yAngle,
-    data_type fov = 60.0, data_type aspect = 16.0 / 9.0,
-    data_type near = 0.01, data_type far = 90.0);
+  Camera(float xPos, float yPos, float zPos, data_type xAngle, data_type yAngle,
+         data_type fov = 60.0, data_type aspect = 16.0 / 9.0,
+         data_type near = 0.01, data_type far = 90.0);
 
   ~Camera();
 
-  //TODO: абстракция своих векторов над glm::vec3
+  // TODO: абстракция своих векторов над glm::vec3
 
   void MoveInto(data_type x, data_type y, data_type z);
 

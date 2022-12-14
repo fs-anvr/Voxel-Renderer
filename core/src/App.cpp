@@ -1,9 +1,8 @@
 #include "public/App.hpp"
 
-#include <iostream>
-
 #include <EventSystem/EventSystem.hpp>
 #include <Input/Input.hpp>
+#include <iostream>
 
 #include "private/Window.hpp"
 #include "public/ServiceLocator.hpp"

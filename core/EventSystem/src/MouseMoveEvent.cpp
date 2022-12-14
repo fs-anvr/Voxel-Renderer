@@ -2,13 +2,10 @@
 
 namespace VoxelEngine {
 
-MouseMoveEvent::MouseMoveEvent(double x, double y)
-    :
-    x(x),
-    y(y) {}
+MouseMoveEvent::MouseMoveEvent(double x, double y) : x(x), y(y) {}
 
 std::string MouseMoveEvent::format() const {
-    return name + ": " + std::to_string(x) + " " + std::to_string(y);
+  return name + ": " + std::to_string(x) + " " + std::to_string(y);
 }
 
 std::string MouseMoveEvent::Name() const { return name; }

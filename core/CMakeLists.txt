@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 
 project(
-  core 
+  Core 
   VERSION 0.0.1
   DESCRIPTION "Voxel engine core"
   LANGUAGES CXX)
@@ -63,20 +63,20 @@ set(ENGINE_PUBLIC_INCLUDES
 
 set(ENGINE_PRIVATE_INCLUDES
   include/private/Window.hpp
-  include/private/Camera.hpp
+  #include/private/Camera.hpp
   include/private/ShaderProgram.hpp
-  include/private/Renderer.hpp
-  include/private/VoxelModel.hpp
-  include/private/Voxel.hpp
+  #include/private/Renderer.hpp
+  #include/private/VoxelModel.hpp
+  #include/private/Voxel.hpp
   #include/private/Event.hpp
 )
 
 set(ENGINE_PRIVATE_SOURCES
   src/App.cpp
   src/Window.cpp
-  src/Camera.cpp
+  #src/Camera.cpp
   src/ShaderProgram.cpp
-  src/Renderer.cpp
+  #src/Renderer.cpp
   src/IO.cpp
   #src/Event.cpp
   #src/Input.cpp
@@ -89,7 +89,7 @@ add_library(${PROJECT_NAME} STATIC
   ${ENGINE_PRIVATE_SOURCES}
 )
 
-#add_library(VoxeEngine::Core ALIAS ${PROJECT_NAME})
+add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
@@ -98,15 +98,25 @@ add_subdirectory(../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
 add_subdirectory(../external/glad ${CMAKE_CURRENT_BINARY_DIR}/glad)
 add_subdirectory(../external/glm ${CMAKE_CURRENT_BINARY_DIR}/glm)
 
-
 add_subdirectory(Input ${CMAKE_CURRENT_BINARY_DIR}/Input)
 add_subdirectory(EventSystem ${CMAKE_CURRENT_BINARY_DIR}/EventSystem)
+add_subdirectory(Render ${CMAKE_CURRENT_BINARY_DIR}/Render)
+add_subdirectory(Voxel ${CMAKE_CURRENT_BINARY_DIR}/Voxel)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC Input EventSystem)
+target_link_libraries(${PROJECT_NAME}
+  PUBLIC
 
-target_link_libraries(${PROJECT_NAME} PUBLIC glfw)  # private??
-target_link_libraries(${PROJECT_NAME} PRIVATE glad)
-target_link_libraries(${PROJECT_NAME} PUBLIC glm)  # private??
+    VoxelEngine::Input
+    VoxelEngine::EventSystem
+    VoxelEngine::Render
+    VoxelEngine::Voxel
+
+    glfw # private??
+    glm::glm # private??
+
+  PRIVATE
+    glad
+)
 
 ###################################################################################################
 ##

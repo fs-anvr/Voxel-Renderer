@@ -1,9 +1,8 @@
 #pragma once
 
 #include <cstdint>
-#include <vector>
-
 #include <glm/glm.hpp>
+#include <vector>
 
 namespace VoxelEngine {
 

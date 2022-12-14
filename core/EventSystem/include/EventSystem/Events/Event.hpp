@@ -1,11 +1,10 @@
 #pragma once
 
 #include <Input/Keys.hpp>
-
-#include <cstdint>
-#include <string>
 #include <array>
+#include <cstdint>
 #include <functional>
+#include <string>
 #include <tuple>
 
 namespace VoxelEngine {
