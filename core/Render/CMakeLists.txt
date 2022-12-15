@@ -27,7 +27,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 
 target_link_libraries(${PROJECT_NAME}
-  PRIVATE
+  PUBLIC
     VoxelEngine::Voxel
     VoxelEngine::Shaders
     VoxelEngine::ServiceLocator
@@ -35,6 +35,3 @@ target_link_libraries(${PROJECT_NAME}
     glm::glm
     glad
 )
-
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Scene) #FIXME: TRANSITIVE DEPENDENCE!!!
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Time) #FIXME: TRANSITIVE DEPENDENCE!!!

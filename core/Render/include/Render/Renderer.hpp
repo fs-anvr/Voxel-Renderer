@@ -8,9 +8,6 @@
 
 namespace VoxelEngine {
 
-// TODO: Renderer : base class
-// TODO: make OPENGLRenderer
-
 class Renderer {
  public:
   Renderer() = default;

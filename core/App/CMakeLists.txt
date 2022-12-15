@@ -31,9 +31,3 @@ target_link_libraries(${PROJECT_NAME}
     glad
     glfw
 )
-
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Render) #FIXME: TRANSITIVE DEPENDENCE!!!
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Shaders) #FIXME: TRANSITIVE DEPENDENCE!!!
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Scene) #FIXME: TRANSITIVE DEPENDENCE!!!
-target_link_libraries(${PROJECT_NAME} PRIVATE VoxelEngine::Time) #FIXME: TRANSITIVE DEPENDENCE!!!
-target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm) #FIXME: TRANSITIVE DEPENDENCE!!!
