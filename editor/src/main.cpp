@@ -1,3 +1,4 @@
+#include <App/App.hpp>
 #include <Input/Input.hpp>
 #include <Input/Keys.hpp>
 #include <Render/Renderables.hpp>
@@ -5,14 +6,16 @@
 #include <iostream>
 #include <string>
 
-#include <App/App.hpp>
+#include "Primitives.cpp"
 
 class MyApp : public VoxelEngine::App {
  public:
   void Update() override {
+    /*************************PROCESS INPUT*************************/
+
     double deltaTime = VoxelEngine::ServiceLocator::Scene().Time().DeltaTime();
     static const double cameraRotateSpeed = 0.5;
-    static const double cameraSpeed = 2.5;
+    static const double cameraSpeed = 5.5;
     if (VoxelEngine::Input::IsPressed(
             VoxelEngine::KeyCode::MOUSE_RIGHT_BUTTON)) {
       VoxelEngine::ServiceLocator::Camera().RotateForAngle(
@@ -21,13 +24,6 @@ class MyApp : public VoxelEngine::App {
           cameraRotateSpeed * deltaTime *
               VoxelEngine::Input::Mouse::GetDeltaPos().second);
     }
-    /*if
-    (VoxelEngine::Input::IsReleased(VoxelEngine::KeyCode::MOUSE_RIGHT_BUTTON)) {
-      std::cout <<
-    "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" <<
-    std::endl;
-    }*/
-
     if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_UPARROW) ||
         VoxelEngine::Input::IsRepeated(
             VoxelEngine::KeyCode::KEYBOARD_UPARROW)) {
@@ -55,6 +51,26 @@ class MyApp : public VoxelEngine::App {
       VoxelEngine::ServiceLocator::Camera().MoveFor(
           0.0, -cameraSpeed * deltaTime, 0.0);
     }
+
+    /*************************GENERATE PRIMITIVES*************************/
+
+    if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_F)) {
+      auto cube =
+          Primitives::Cube3D(5, VoxelEngine::ServiceLocator::Camera().position);
+      VoxelEngine::ServiceLocator::Scene().AddVoxels(cube);
+    }
+
+    if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_G)) {
+      auto rectangle = Primitives::Rectangle3D(
+          glm::vec3(1, 2, 3), VoxelEngine::ServiceLocator::Camera().position);
+      VoxelEngine::ServiceLocator::Scene().AddVoxels(rectangle);
+    }
+
+    if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_H)) {
+      auto sphere = Primitives::Sphere3D(
+          5, VoxelEngine::ServiceLocator::Camera().position);
+      VoxelEngine::ServiceLocator::Scene().AddVoxels(sphere);
+    }
   }
 };
 
@@ -67,17 +83,23 @@ int main() {
   
   MyApp app;
 
-  std::vector<VoxelEngine::Voxel> voxels;
+  /*std::vector<VoxelEngine::Voxel> scatter;
   for (int x = 0; x < 10; ++x)
     for (int y = 0; y < 5; ++y)
       for (int z = 0; z < 5; ++z)
-        voxels.push_back(VoxelEngine::Voxel{
+        scatter.push_back(VoxelEngine::Voxel{
             .position =
                 glm::vec3{static_cast<float>(-x * 2), static_cast<float>(y * 2),
                           static_cast<float>(-z * 2)},
             .color = glm::vec3{(rand() % 10) * 0.1, (rand() % 10) * 0.1,
                                (rand() % 10) * 0.1}});
-  VoxelEngine::Renderables::Assign(voxels.begin(), voxels.end());
+
+  auto shape = Primitives::Sphere3D(8, glm::vec3(15, 0, 30));
+  auto shape1 = Primitives::Cube3D(5, glm::vec3(30, 0, 30));
+
+  VoxelEngine::ServiceLocator::Scene().AddVoxels(scatter);
+  VoxelEngine::ServiceLocator::Scene().AddVoxels(shape);
+  VoxelEngine::ServiceLocator::Scene().AddVoxels(shape1);*/
 
   int returnCodeApp = app.Start(width, height, title);
 

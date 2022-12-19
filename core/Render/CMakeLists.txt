@@ -31,6 +31,7 @@ target_link_libraries(${PROJECT_NAME}
     VoxelEngine::Voxel
     VoxelEngine::Shaders
     VoxelEngine::ServiceLocator
+    VoxelEngine::Scene
 
     glm::glm
     glad

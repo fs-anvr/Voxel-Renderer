@@ -1,3 +1,4 @@
+/*
 #pragma once
 
 // clang-format off
@@ -30,3 +31,4 @@ class Renderables {
 };
 
 }  // namespace VoxelEngine
+*/

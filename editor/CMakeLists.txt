@@ -6,7 +6,13 @@ project(
   DESCRIPTION "Voxel engine editor"
   LANGUAGES CXX)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+
+set(PRIVATE_SRC
+  src/Primitives.cpp  
+)
+
+
+add_executable(${PROJECT_NAME} src/Main.cpp ${PRIVATE_SRC})
 
 target_link_libraries(${PROJECT_NAME} Core)
 

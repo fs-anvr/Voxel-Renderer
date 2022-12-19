@@ -1,3 +1,4 @@
+/*
 // clang-format off
 
 #include <Render/Renderables.hpp>
@@ -17,3 +18,4 @@ std::vector<std::reference_wrapper<Voxel>> Renderables::Data() {
 }
 
 }  // namespace VoxelEngine
+*/

@@ -116,7 +116,27 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     case GLFW_KEY_LEFT:
       buttonCode = KeyCode::KEYBOARD_LEFTARROW;
       break;
-    
+
+    case GLFW_KEY_F:
+      buttonCode = KeyCode::KEYBOARD_F;
+      break;
+
+    case GLFW_KEY_G:
+      buttonCode = KeyCode::KEYBOARD_G;
+      break;
+
+    case GLFW_KEY_H:
+      buttonCode = KeyCode::KEYBOARD_H;
+      break;
+
+    case GLFW_KEY_J:
+      buttonCode = KeyCode::KEYBOARD_J;
+      break;
+
+    case GLFW_KEY_K:
+      buttonCode = KeyCode::KEYBOARD_K;
+      break;
+
     default:
       buttonCode = KeyCode::KEYS_COUNT;
       break;

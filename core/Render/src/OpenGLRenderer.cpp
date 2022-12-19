@@ -55,9 +55,7 @@ void OpenGLRenderer::Rerender() {
 
   const glm::mat4 MV = camera.Projection() * camera.View();
 
-  for (auto wrapped_voxel : Renderables::Data()) {
-    Voxel& voxel = wrapped_voxel.get();
-
+  for (auto voxel : ServiceLocator::Scene().GetVoxels()) {
     const glm::mat4 MVP = MV * voxel.transform;
 
     GLuint MatrixID = glGetUniformLocation(shaderProgram.id, "MVP");

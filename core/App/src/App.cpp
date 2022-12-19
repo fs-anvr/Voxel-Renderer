@@ -63,7 +63,7 @@ namespace VoxelEngine {
 
     _window->setCallback([&](Event& event){
       eventDispatcher.Dispatch(event);
-      std::cout << event.format() << std::endl;
+      // std::cout << event.format() << std::endl;
     });
 
     if (_window->IsInitialized() == false) return 1;
