@@ -14,8 +14,8 @@ class MyApp : public VoxelEngine::App {
     /*************************PROCESS INPUT*************************/
 
     double deltaTime = VoxelEngine::ServiceLocator::Scene().Time().DeltaTime();
-    static const double cameraRotateSpeed = 0.5;
-    static const double cameraSpeed = 5.5;
+    static const double cameraRotateSpeed = 0.08;
+    static const double cameraSpeed = 1.5;
     if (VoxelEngine::Input::IsPressed(
             VoxelEngine::KeyCode::MOUSE_RIGHT_BUTTON)) {
       VoxelEngine::ServiceLocator::Camera().RotateForAngle(
@@ -56,7 +56,8 @@ class MyApp : public VoxelEngine::App {
 
     if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_F)) {
       auto cube =
-          Primitives::Cube3D(5, VoxelEngine::ServiceLocator::Camera().position);
+          Primitives::Cube3D(5, VoxelEngine::ServiceLocator::Camera().position,
+                             glm::vec3(1, 0.1, 0));
       VoxelEngine::ServiceLocator::Scene().AddVoxels(cube);
     }
 
@@ -69,6 +70,12 @@ class MyApp : public VoxelEngine::App {
     if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_H)) {
       auto sphere = Primitives::Sphere3D(
           5, VoxelEngine::ServiceLocator::Camera().position);
+      VoxelEngine::ServiceLocator::Scene().AddVoxels(sphere);
+    }
+
+    if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_J)) {
+      auto sphere = Primitives::Sphere3DRandomColor(
+          10, VoxelEngine::ServiceLocator::Camera().position);
       VoxelEngine::ServiceLocator::Scene().AddVoxels(sphere);
     }
   }

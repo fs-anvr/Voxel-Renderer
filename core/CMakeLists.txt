@@ -33,10 +33,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,GNU,CLang,AppleClang,ARMClang>")
 set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
 
-#add_compile_options(
-#  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wold-style-cast>>"
-#  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W4;-WX>>"
-#)
+add_compile_options(
+  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wold-style-cast>>"
+  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W4;-WX>>"
+)
 
 #TODO: больше опций компилятора
 #TODO: debug / release

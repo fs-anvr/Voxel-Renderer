@@ -30,8 +30,7 @@ target_link_libraries(${PROJECT_NAME}
   PUBLIC
     VoxelEngine::Voxel
     VoxelEngine::Shaders
-    VoxelEngine::ServiceLocator
-    VoxelEngine::Scene
+    VoxelEngine::ServiceLocator #Scene
 
     glm::glm
     glad

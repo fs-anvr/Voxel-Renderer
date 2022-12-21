@@ -1,4 +1,5 @@
 #include <Voxel/Voxel.hpp>
+#include <cmath>
 #include <cstdint>
 #include <vector>
 
@@ -13,12 +14,22 @@ class Primitives {
   static inline std::vector<VoxelEngine::Voxel> Rectangle3D(
       glm::vec3 size, glm::vec3 position = glm::vec3(0, 0, 0),
       glm::vec3 color = glm::vec3(1, 1, 1)) {
+    size = glm::vec3(static_cast<std::int32_t>(size.x),
+                     static_cast<std::int32_t>(size.y),
+                     static_cast<std::int32_t>(size.z));
     std::vector<VoxelEngine::Voxel> voxels(size.x * size.y * size.z);
-    for (std::size_t x = 0; x < size.x; ++x) {
-      for (std::size_t y = 0; y < size.y; ++y) {
-        for (std::size_t z = 0; z < size.z; ++z) {
-          voxels[x * size.y * size.z + y * size.z + z] = VoxelEngine::Voxel{
-              .position = position + glm::vec3(x, y, z), .color = color};
+    for (std::size_t x = 0; x < static_cast<std::size_t>(size.x); ++x) {
+      for (std::size_t y = 0; y < static_cast<std::size_t>(size.y); ++y) {
+        for (std::size_t z = 0; z < static_cast<std::size_t>(size.z); ++z) {
+          voxels[x * static_cast<std::size_t>(size.y) *
+                     static_cast<std::size_t>(size.z) +
+                 y * static_cast<std::size_t>(size.z) + z] = VoxelEngine::Voxel{
+              .position =
+                  glm::vec3(static_cast<std::int32_t>(round(position.x)),
+                            static_cast<std::int32_t>(round(position.y)),
+                            static_cast<std::int32_t>(round(position.z))) +
+                  glm::vec3(x, y, z),
+              .color = color};
         }
       }
     }
@@ -38,7 +49,36 @@ class Primitives {
         for (std::int32_t z = -radius; z <= radius; ++z) {
           if (x * x + y * y + z * z <= radius * radius) {
             voxels.push_back(VoxelEngine::Voxel{
-                .position = position + glm::vec3(x, y, z), .color = color});
+                .position = glm::vec3(static_cast<std::int32_t>(position.x),
+                                      static_cast<std::int32_t>(position.y),
+                                      static_cast<std::int32_t>(position.z)) +
+                            glm::vec3(x, y, z),
+                .color = color});
+          }
+        }
+      }
+    }
+
+    return voxels;
+  }
+
+  static inline std::vector<VoxelEngine::Voxel> Sphere3DRandomColor(
+      std::int32_t radius, glm::vec3 position = glm::vec3(0, 0, 0)) {
+    if (radius < 0) {
+      return std::vector<VoxelEngine::Voxel>();
+    }
+    std::vector<VoxelEngine::Voxel> voxels;
+    for (std::int32_t x = -radius; x <= radius; ++x) {
+      for (std::int32_t y = -radius; y <= radius; ++y) {
+        for (std::int32_t z = -radius; z <= radius; ++z) {
+          if (x * x + y * y + z * z <= radius * radius) {
+            voxels.push_back(VoxelEngine::Voxel{
+                .position = glm::vec3(static_cast<std::int32_t>(position.x),
+                                      static_cast<std::int32_t>(position.y),
+                                      static_cast<std::int32_t>(position.z)) +
+                            glm::vec3(x, y, z),
+                .color = glm::vec3((rand() % 10) * 0.1, (rand() % 10) * 0.1,
+                                   (rand() % 10) * 0.1)});
           }
         }
       }
