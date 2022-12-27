@@ -56,8 +56,7 @@ class MyApp : public VoxelEngine::App {
 
     if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_F)) {
       auto cube =
-          Primitives::Cube3D(5, VoxelEngine::ServiceLocator::Camera().position,
-                             glm::vec3(1, 0.1, 0));
+          Primitives::Cube3DRandomColor(2, VoxelEngine::ServiceLocator::Camera().position);
       VoxelEngine::ServiceLocator::Scene().AddVoxels(cube);
     }
 
@@ -89,24 +88,6 @@ int main() {
   std::string title = "Voxel Engine Editor"s;
   
   MyApp app;
-
-  /*std::vector<VoxelEngine::Voxel> scatter;
-  for (int x = 0; x < 10; ++x)
-    for (int y = 0; y < 5; ++y)
-      for (int z = 0; z < 5; ++z)
-        scatter.push_back(VoxelEngine::Voxel{
-            .position =
-                glm::vec3{static_cast<float>(-x * 2), static_cast<float>(y * 2),
-                          static_cast<float>(-z * 2)},
-            .color = glm::vec3{(rand() % 10) * 0.1, (rand() % 10) * 0.1,
-                               (rand() % 10) * 0.1}});
-
-  auto shape = Primitives::Sphere3D(8, glm::vec3(15, 0, 30));
-  auto shape1 = Primitives::Cube3D(5, glm::vec3(30, 0, 30));
-
-  VoxelEngine::ServiceLocator::Scene().AddVoxels(scatter);
-  VoxelEngine::ServiceLocator::Scene().AddVoxels(shape);
-  VoxelEngine::ServiceLocator::Scene().AddVoxels(shape1);*/
 
   int returnCodeApp = app.Start(width, height, title);
 

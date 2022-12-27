@@ -26,6 +26,8 @@ class OpenGLRenderer : public Renderer {
   std::uint32_t _voxelIndexBuffer;
   std::uint32_t _colorBuffer;
   std::uint32_t _VBO;
+
+  std::uint32_t _matrixBuffer;
 };
 
 }  // namespace VoxelEngine

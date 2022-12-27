@@ -2,6 +2,8 @@
 
 #include <chrono>
 
+//TODO: изменение расстояния между двумя метками времени
+
 namespace VoxelEngine {
 
 class Time {
@@ -26,8 +28,9 @@ class Time {
   time_type previousFrame;
   time_type currentFrame;
 
-  static constexpr double duration_to_double(const std::chrono::duration<int64_t, std::milli>& duration) noexcept;
-  
+  static constexpr double duration_to_double(
+      const std::chrono::duration<int64_t, std::milli>& duration) noexcept;
+
   static time_type now() noexcept;
 };
 

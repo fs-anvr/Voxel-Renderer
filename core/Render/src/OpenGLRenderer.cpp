@@ -7,6 +7,8 @@
 #include <glad/gl.h>
 #include <glm/glm.hpp>
 
+#include <cstdint>
+
 // clang-format on
 
 namespace VoxelEngine {
@@ -28,6 +30,8 @@ void OpenGLRenderer::Init() {
   glGenBuffers(1, &_voxelIndexBuffer);
   glGenBuffers(1, &_colorBuffer);
   glGenBuffers(1, &_VBO);
+
+  //glGenBuffers(1, &_matrixBuffer);
 
   glBindBuffer(GL_ARRAY_BUFFER, _voxelVertexBuffer);
   glBufferData(GL_ARRAY_BUFFER, sizeof(float) * Renderer::_voxelIndexSize,
@@ -55,33 +59,50 @@ void OpenGLRenderer::Rerender() {
 
   const glm::mat4 MV = camera.Projection() * camera.View();
 
-  for (auto voxel : ServiceLocator::Scene().GetVoxels()) {
-    const glm::mat4 MVP = MV * voxel.transform;
+  GLuint MatrixID = glGetUniformLocation(shaderProgram.id, "MV");
+  glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MV[0][0]);
 
-    GLuint MatrixID = glGetUniformLocation(shaderProgram.id, "MVP");
-    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
+  const std::vector<Voxel>& voxels = ServiceLocator::Scene().GetVoxels();
 
-    glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(voxel.color), &voxel.color,
-                 GL_STATIC_DRAW);
+  std::vector<glm::vec3> v_pos(voxels.size());
+  std::vector<glm::vec3> v_color(voxels.size());
+  std::vector<glm::mat4> v_matrix(voxels.size());
 
-    glBindBuffer(GL_ARRAY_BUFFER, _VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(voxel.position), &voxel.position,
-                 GL_STATIC_DRAW);
-
-    glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
-    glVertexAttribDivisor(1, 1);
-
-    glEnableVertexAttribArray(2);
-    glBindBuffer(GL_ARRAY_BUFFER, _VBO);
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
-    glVertexAttribDivisor(2, 1);
-
-    glDrawElements(GL_TRIANGLES, _voxelVertexSize, GL_UNSIGNED_INT,
-                   static_cast<void*>(0));
+  for (auto& voxel : voxels) {
+    std::size_t idx = &voxel - &voxels[0];
+    v_pos[idx] = voxel.position;
+    v_color[idx] = voxel.color;
+    v_matrix[idx] = voxel.transform;
   }
+
+//TODO: группировка вокселей по их moxel matrix?
+
+  const glm::mat4 modelMatrix = voxels.size() == 0 ? glm::mat4(1.0) : voxels[0].transform;
+
+  GLuint modelMatrixId = glGetUniformLocation(shaderProgram.id, "modelMatrix");
+  glUniformMatrix4fv(modelMatrixId, 1, GL_FALSE, &modelMatrix[0][0]);
+
+  glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(v_color[0]) * v_color.size(), &v_color[0],
+               GL_STATIC_DRAW);
+
+  glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(v_pos[0]) * v_pos.size(), &v_pos[0],
+               GL_STATIC_DRAW);
+
+  glEnableVertexAttribArray(1);
+  glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+  glVertexAttribDivisor(1, 1);
+
+  glEnableVertexAttribArray(2);
+  glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+  glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+  glVertexAttribDivisor(2, 1);
+
+  glDrawElementsInstanced(GL_TRIANGLES, _voxelVertexSize, GL_UNSIGNED_INT,
+                 static_cast<void*>(0), voxels.size());
+  //}
 }
 
 }  // namespace VoxelEngine
