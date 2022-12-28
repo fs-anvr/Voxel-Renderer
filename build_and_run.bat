@@ -1,6 +1,6 @@
 cd build
-cmake ..
+cmake -D CMAKE_C_COMPILER="C:\Program Files\LLVM\bin" -D CMAKE_CXX_COMPILER="C:\Program Files\LLVM\bin" ..
 cd ..
 cmake --build build
 
-.\build\bin\Editor.exe
+.\build\bin\Debug\Editor.exe

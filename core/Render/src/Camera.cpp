@@ -46,9 +46,10 @@ void Camera::MoveFor(data_type x, data_type y, data_type z) {
   position += z * Up();
 }
 
-void Camera::RotateForAngle(data_type xAngle, data_type yAngle) {
-  this->xAngle -= xAngle;
-  this->yAngle -= yAngle;
+void Camera::RotateForAngle(Camera::data_type xAngleArg,
+                            Camera::data_type yAngleArg) {
+  this->xAngle -= xAngleArg;
+  this->yAngle -= yAngleArg;
 }
 
 glm::vec3 Camera::Direction() const {

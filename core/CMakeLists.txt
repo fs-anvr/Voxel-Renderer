@@ -52,16 +52,22 @@ endif()
 ###################################################################################################
 
 set(PUBLIC_INCLUDE
-  Core.hpp
+  include/Core.hpp
+)
+
+set(PRIVATE_SRC
+  src/Core.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC
   ${PUBLIC_INCLUDE}
+  ${PRIVATE_SRC}
 )
 
 add_library("VoxelEngine::${PROJECT_NAME}" ALIAS ${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
+target_include_directories(${PROJECT_NAME} PRIVATE src)
 
 add_subdirectory(../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
 add_subdirectory(../external/glad ${CMAKE_CURRENT_BINARY_DIR}/glad)

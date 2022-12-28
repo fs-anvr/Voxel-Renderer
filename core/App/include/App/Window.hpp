@@ -11,7 +11,7 @@
 
 // clang-format on
 
-class GLFWwindow;
+struct GLFWwindow;
 
 namespace VoxelEngine {
 

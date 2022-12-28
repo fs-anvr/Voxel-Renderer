@@ -47,14 +47,14 @@ class Camera {
   glm::mat4 View() const;
 
   glm::vec3 position;
-  float xAngle;
-  float yAngle;
+  data_type xAngle;
+  data_type yAngle;
 
  private:
-  data_type _fov = 60.0;
-  data_type _aspect = 16.0 / 9.0;
-  data_type _near = 0.01;
-  data_type _far = 90.0;
+  data_type _fov = 60.0f;
+  data_type _aspect = 16.0f / 9.0f;
+  data_type _near = 0.01f;
+  data_type _far = 90.0f;
 };
 
 }  // namespace VoxelEngine
