@@ -10,6 +10,8 @@ const std::int32_t Renderer::_voxelVertexSize = 36;
 
 const std::int32_t Renderer::_voxelIndexSize = 24;
 
+const std::int32_t Renderer::_voxelNormalSize = 108;
+
 // clang-format off
 
 const float Renderer::_voxelVertex[] = {
@@ -36,6 +38,51 @@ const int Renderer::_voxelIndex[] = {
   2, 6, 1, 5, 1, 6,
   // bottom
   3, 0, 7, 4, 7, 0
+};
+
+const float Renderer::_voxelNormal[] = {
+  //front
+  0.0f, 0.0f, 1.0f,
+  0.0f, 0.0f, 1.0f,
+  0.0f, 0.0f, 1.0f,
+  0.0f, 0.0f, 1.0f,
+  0.0f, 0.0f, 1.0f,
+  0.0f, 0.0f, 1.0f,
+  //back
+  0.0f, 0.0f, -1.0f,
+  0.0f, 0.0f, -1.0f,
+  0.0f, 0.0f, -1.0f,
+  0.0f, 0.0f, -1.0f,
+  0.0f, 0.0f, -1.0f,
+  0.0f, 0.0f, -1.0f,
+  //right
+  1.0f, 0.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,
+  1.0f, 0.0f, 0.0f,
+  //left
+  -1.0f, 0.0f, 0.0f,
+  -1.0f, 0.0f, 0.0f,
+  -1.0f, 0.0f, 0.0f,
+  -1.0f, 0.0f, 0.0f,
+  -1.0f, 0.0f, 0.0f,
+  -1.0f, 0.0f, 0.0f,
+  //top
+  0.0f, 1.0f, 0.0f,
+  0.0f, 1.0f, 0.0f,
+  0.0f, 1.0f, 0.0f,
+  0.0f, 1.0f, 0.0f,
+  0.0f, 1.0f, 0.0f,
+  0.0f, 1.0f, 0.0f,
+  //bottom
+  0.0f, -1.0f, 0.0f,
+  0.0f, -1.0f, 0.0f,
+  0.0f, -1.0f, 0.0f,
+  0.0f, -1.0f, 0.0f,
+  0.0f, -1.0f, 0.0f,
+  0.0f, -1.0f, 0.0f
 };
 
 // clang-format on

@@ -20,8 +20,10 @@ class Renderer {
  protected:
   static const std::int32_t _voxelVertexSize;
   static const std::int32_t _voxelIndexSize;
+  static const std::int32_t _voxelNormalSize;
   static const float _voxelVertex[];
   static const int _voxelIndex[];
+  static const float _voxelNormal[];
 };
 
 }  // namespace VoxelEngine

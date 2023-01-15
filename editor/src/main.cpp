@@ -56,7 +56,7 @@ class MyApp : public VoxelEngine::App {
 
     if (VoxelEngine::Input::IsPressed(VoxelEngine::KeyCode::KEYBOARD_F)) {
       auto cube =
-          Primitives::Cube3DRandomColor(2, VoxelEngine::ServiceLocator::Camera().position);
+          Primitives::Cube3DRandomColor(3, VoxelEngine::ServiceLocator::Camera().position);
       VoxelEngine::ServiceLocator::Scene().AddVoxels(cube);
     }
 

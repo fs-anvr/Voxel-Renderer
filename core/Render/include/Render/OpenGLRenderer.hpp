@@ -24,6 +24,7 @@ class OpenGLRenderer : public Renderer {
  private:
   std::uint32_t _voxelVertexBuffer;
   std::uint32_t _voxelIndexBuffer;
+  std::uint32_t _voxelNormalBuffer;
   std::uint32_t _colorBuffer;
   std::uint32_t _VBO;
 };

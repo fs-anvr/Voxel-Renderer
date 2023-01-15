@@ -4,12 +4,21 @@ layout(location = 0) in vec3 vertexPositionModelspace;
 layout(location = 1) in vec3 vertexColor;
 layout(location = 2) in vec3 offset;
 
+layout(location = 3) in vec3 vertexNormal;
+
 uniform mat4 MV;
 uniform mat4 modelMatrix;
-//mat4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+
 out vec3 fragmentColor;
+out vec3 fragmentPos;
+out vec3 normal;
 
 void main() {
-  gl_Position = (MV * modelMatrix) * vec4(vertexPositionModelspace + offset, 1.0);
+  vec4 pos = vec4(vertexPositionModelspace + offset, 1.0);
+
+  gl_Position = (MV * modelMatrix) * pos;
+
   fragmentColor = vertexColor;
+  fragmentPos = vec3(modelMatrix * pos);
+  normal = vertexNormal;
 }

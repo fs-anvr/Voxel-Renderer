@@ -28,6 +28,7 @@ void OpenGLRenderer::Init() {
 
   glGenBuffers(1, &_voxelVertexBuffer);
   glGenBuffers(1, &_voxelIndexBuffer);
+  glGenBuffers(1, &_voxelNormalBuffer);
   glGenBuffers(1, &_colorBuffer);
   glGenBuffers(1, &_VBO);
 
@@ -40,8 +41,17 @@ void OpenGLRenderer::Init() {
                sizeof(int) * Renderer::_voxelVertexSize, &_voxelIndex,
                GL_STATIC_DRAW);
 
+  glBindBuffer(GL_ARRAY_BUFFER, _voxelNormalBuffer);
+  glBufferData(GL_ARRAY_BUFFER, sizeof(float) * sizeof(glm::vec3),
+               &_voxelNormal, GL_STATIC_DRAW);
+
   glEnableVertexAttribArray(0);
+  glBindBuffer(GL_ARRAY_BUFFER, _voxelVertexBuffer);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+
+  glEnableVertexAttribArray(3);
+  glBindBuffer(GL_ARRAY_BUFFER, _voxelNormalBuffer);
+  glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
 
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
@@ -58,6 +68,10 @@ void OpenGLRenderer::Rerender() {
 
   GLuint MatrixID = glGetUniformLocation(shaderProgram.id, "MV");
   glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MV[0][0]);
+
+  GLuint LightPosID = glGetUniformLocation(shaderProgram.id, "lightPos");
+  glm::vec3 lightPos = glm::vec3(10.0f, 10.0f, 100.0f);
+  glUniform3fv(LightPosID, 1, &lightPos[0]);
 
   const std::vector<Voxel>& voxels = ServiceLocator::Scene().GetVoxels();
 
