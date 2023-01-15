@@ -15,11 +15,6 @@
 
 // clang-format on
 
-#define MAYBEUNUSED(expr) \
-  do {                    \
-    (void)(expr);         \
-  } while (0)
-
 namespace VoxelEngine {
 
 Window::Window(uint16_t width, uint16_t height, std::string title)
@@ -77,8 +72,7 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     handle._eventCallback(event);
   }
 
-  void Window::mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
-    MAYBEUNUSED(mods);
+  void Window::mouseButtonCallback(GLFWwindow* window, int button, int action, [[maybe_unused]] int mods) {
 
     auto& handle = *static_cast<Window*>(glfwGetWindowUserPointer(window));
     KeyCode buttonCode;
@@ -103,9 +97,7 @@ Window::Window(uint16_t width, uint16_t height, std::string title)
     }
   }
 
-  void Window::keyboardButtonCallback(GLFWwindow* window, int button, int scancode, int action, int mods) {
-    MAYBEUNUSED(scancode);
-    MAYBEUNUSED(mods);
+  void Window::keyboardButtonCallback(GLFWwindow* window, int button, [[maybe_unused]] int scancode, int action, [[maybe_unused]] int mods) {
 
     auto& handle = *static_cast<Window*>(glfwGetWindowUserPointer(window));
     KeyCode buttonCode;

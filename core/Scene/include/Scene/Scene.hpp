@@ -58,4 +58,23 @@ class Scene {
   std::vector<Voxel> objects;
 };
 
+
+/*
+class Scene {
+  using container = std::vector<Voxel>;
+  using vec3 = glm::vec3;
+ public:
+  Scene() = default;
+
+  virtual ~Scene() = 0;
+
+  virtual void AddVoxel(const Voxel&) = 0;
+
+  virtual void RemoveVoxel(const vec3&) = 0;
+
+  virtual container GetVoxels() = 0;
+};
+*/
+
+
 }  // namespace VoxelEngine

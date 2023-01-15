@@ -7,6 +7,8 @@
 
 // clang-format on
 
+//TODO: abstract Camera
+
 namespace VoxelEngine {
 
 class Camera {
@@ -58,3 +60,32 @@ class Camera {
 };
 
 }  // namespace VoxelEngine
+
+/*
+class Camera {
+  using vec3 = glm::vec3;
+  using mat4 = glm::mat4;
+  using data_type = float;
+
+ public:
+  Camera() = default;
+  virtual ~Camera() = 0;
+
+  virtual vec3 direction() = 0;
+  virtual vec3 right() = 0;
+  virtual vec3 up() = 0;
+
+  virtual mat4 projection() = 0;
+  virtual mat4 view() = 0;
+  virtual mat4 matrix() = 0;
+
+  virtual data_type fov() = 0;
+  virtual data_type aspect() = 0;
+  virtual data_type near() = 0;
+  virtual data_type far() = 0;
+
+  virtual void moveInto(const vec3&) = 0;
+  virtual void moveFor(const vec3&) = 0;
+  virtual void rotateForAngle(const data_type&, const data_type&) = 0;
+};
+*/

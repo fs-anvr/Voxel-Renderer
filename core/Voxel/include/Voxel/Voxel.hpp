@@ -9,6 +9,8 @@
 
 // clang-format off
 
+//TODO: abstract Voxel
+
 namespace VoxelEngine {
 
 class Voxel {
@@ -30,3 +32,39 @@ class Voxel {
 };
 
 }  // namespace VoxelEngine
+
+
+
+/*class Voxel {
+  using vec3 = glm::vec3;
+  using mat4 = glm::mat4;
+
+ public:
+  Voxel() = default;
+  
+  virtual ~Voxel() = 0;
+
+  virtual vec3 position() = 0;
+
+  virtual vec3 color() = 0;
+  
+  virtual mat4 transform() = 0; 
+};
+
+
+class BasicVoxel : public Voxel {
+  using vec3 = glm::vec3;
+  using mat4 = glm::mat4;
+
+ public:
+  BasicVoxel(){}
+  
+  ~BasicVoxel() override {}
+
+  vec3 position() override {}
+
+  vec3 color() override {}
+
+  mat4 transform() override{}
+};
+*/
