@@ -42,16 +42,17 @@ void OpenGLRenderer::Init() {
                GL_STATIC_DRAW);
 
   glBindBuffer(GL_ARRAY_BUFFER, _voxelNormalBuffer);
-  glBufferData(GL_ARRAY_BUFFER, sizeof(float) * sizeof(glm::vec3),
+  glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6,
                &_voxelNormal, GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, _voxelVertexBuffer);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
 
-  glEnableVertexAttribArray(3);
+  glEnableVertexAttribArray(1);
   glBindBuffer(GL_ARRAY_BUFFER, _voxelNormalBuffer);
-  glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+  glVertexAttribDivisor(1, 0);
 
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
@@ -59,7 +60,7 @@ void OpenGLRenderer::Init() {
 }
 
 void OpenGLRenderer::Rerender() {
-  glClearColor(0.1f, 0.1f, 0.1f, 1);
+  glClearColor(0.7f, 0.7f, 1.0f, 1);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   Camera& camera = ServiceLocator::Camera();
@@ -70,7 +71,7 @@ void OpenGLRenderer::Rerender() {
   glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MV[0][0]);
 
   GLuint LightPosID = glGetUniformLocation(shaderProgram.id, "lightPos");
-  glm::vec3 lightPos = glm::vec3(10.0f, 10.0f, 100.0f);
+  glm::vec3 lightPos = glm::vec3(10.0f, 40.0f, 50.0f);
   glUniform3fv(LightPosID, 1, &lightPos[0]);
 
   const std::vector<Voxel>& voxels = ServiceLocator::Scene().GetVoxels();
@@ -104,15 +105,15 @@ void OpenGLRenderer::Rerender() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(v_pos[0]) * v_pos.size(), &v_pos[0],
                  GL_STATIC_DRAW);
 
-    glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
-    glVertexAttribDivisor(1, 1);
-
     glEnableVertexAttribArray(2);
-    glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, _colorBuffer);
     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
     glVertexAttribDivisor(2, 1);
+
+    glEnableVertexAttribArray(3);
+    glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+    glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 0, static_cast<void*>(0));
+    glVertexAttribDivisor(3, 1);
 
     glDrawElementsInstanced(GL_TRIANGLES, _voxelVertexSize, GL_UNSIGNED_INT,
                             static_cast<void*>(0),

@@ -117,5 +117,304 @@ class Primitives {
     return voxels;
   }
 
+  static inline std::vector<VoxelEngine::Voxel> Snowman() {
+    using namespace VoxelEngine;
+      std::vector<Voxel> snowman;
+
+      //snowman.push_back(Voxel(glm::vec3(), glm::vec3()));
+
+      //snowman.push_back(Voxel(glm::vec3(0, 0, 0), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(1, 0, 0), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(-1, 0, 0), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(0, 0, -1), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(0, 0, 1), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(-1, 0, -1), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(-1, 0, 1), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(1, 0, -1), glm::vec3(1, 1, 1))); // white
+      //snowman.push_back(Voxel(glm::vec3(1, 0, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 0, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 0, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 0, -2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 0, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 0, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 0, 2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 0, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 0, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 0, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(2, 0, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 0, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 0, 1), glm::vec3(1, 1, 1))); // white
+
+
+      
+      snowman.push_back(Voxel(glm::vec3(-1, 4, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 4, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 4, -2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 4, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 4, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 4, 2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 4, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 4, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 4, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(2, 4, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 4, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 4, 1), glm::vec3(1, 1, 1))); // white
+
+      
+      
+      snowman.push_back(Voxel(glm::vec3(-1, 1, -3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 1, -3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 1, -3), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 1, 3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 1, 3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 1, 3), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-3, 1, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-3, 1, 0), glm::vec3(.15, .15, .15))); // grey
+      snowman.push_back(Voxel(glm::vec3(-3, 1, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(3, 1, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(3, 1, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(3, 1, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 1, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 1, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 1, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 1, 2), glm::vec3(1, 1, 1))); // white
+
+      
+      
+      snowman.push_back(Voxel(glm::vec3(-1, 2, -3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 2, -3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 2, -3), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 2, 3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 2, 3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 2, 3), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-3, 2, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-3, 2, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-3, 2, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(3, 2, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(3, 2, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(3, 2, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 2, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 2, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 2, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 2, 2), glm::vec3(1, 1, 1))); // white
+
+            
+            
+      snowman.push_back(Voxel(glm::vec3(-1, 3, -3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 3, -3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 3, -3), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 3, 3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 3, 3), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 3, 3), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-3, 3, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-3, 3, 0), glm::vec3(.15, .15, .15))); // grey
+      snowman.push_back(Voxel(glm::vec3(-3, 3, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(3, 3, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(3, 3, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(3, 3, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 3, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 3, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 3, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 3, 2), glm::vec3(1, 1, 1))); // white
+
+
+
+      snowman.push_back(Voxel(glm::vec3(0, 5, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 5, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-1, 5, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 5, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 5, 1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-1, 5, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-1, 5, 1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 5, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 5, 1), glm::vec3(1, 1, 1))); // white
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 6, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 6, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 6, -2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 6, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 6, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 6, 2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 6, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 6, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 6, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(2, 6, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 6, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 6, 1), glm::vec3(1, 1, 1))); // white
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-3, 6, 0), glm::vec3(1, .35, 0))); // orange
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 7, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 7, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 7, -2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 7, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 7, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 7, 2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 7, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 7, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 7, 1), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(2, 7, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 7, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 7, 1), glm::vec3(1, 1, 1))); // white
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 8, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 8, -2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 8, -2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-1, 8, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(0, 8, 2), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(1, 8, 2), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(-2, 8, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 8, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(-2, 8, 1), glm::vec3(1, 1, 1))); // white
+
+      snowman.push_back(Voxel(glm::vec3(2, 8, -1), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 8, 0), glm::vec3(1, 1, 1))); // white
+      snowman.push_back(Voxel(glm::vec3(2, 8, 1), glm::vec3(1, 1, 1))); // white
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 9, -3), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 9, -3), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 9, -3), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-1, 9, 3), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 9, 3), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 9, 3), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-3, 9, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-3, 9, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-3, 9, 1), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(3, 9, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(3, 9, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(3, 9, 1), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-2, 9, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 9, 2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 9, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 9, 2), glm::vec3(0, 0, 0))); // black
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 10, -2), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(0, 10, -2), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(1, 10, -2), glm::vec3(1, 0, 0))); // red
+
+      snowman.push_back(Voxel(glm::vec3(-1, 10, 2), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(0, 10, 2), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(1, 10, 2), glm::vec3(1, 0, 0))); // red
+
+      snowman.push_back(Voxel(glm::vec3(-2, 10, -1), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(-2, 10, 0), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(-2, 10, 1), glm::vec3(1, 0, 0))); // red
+
+      snowman.push_back(Voxel(glm::vec3(2, 10, -1), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(2, 10, 0), glm::vec3(1, 0, 0))); // red
+      snowman.push_back(Voxel(glm::vec3(2, 10, 1), glm::vec3(1, 0, 0))); // red
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 11, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 11, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 11, -2), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-1, 11, 2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 11, 2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 11, 2), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-2, 11, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 11, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 11, 1), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(2, 11, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 11, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 11, 1), glm::vec3(0, 0, 0))); // black
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 12, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 12, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 12, -2), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-1, 12, 2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 12, 2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 12, 2), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-2, 12, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 12, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 12, 1), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(2, 12, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 12, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 12, 1), glm::vec3(0, 0, 0))); // black
+
+
+
+      snowman.push_back(Voxel(glm::vec3(-1, 13, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 13, -2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 13, -2), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-1, 13, 2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 13, 2), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 13, 2), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(-2, 13, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 13, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-2, 13, 1), glm::vec3(0, 0, 0))); // black
+
+      snowman.push_back(Voxel(glm::vec3(2, 13, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 13, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(2, 13, 1), glm::vec3(0, 0, 0))); // black
+
+
+
+      snowman.push_back(Voxel(glm::vec3(0, 13, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 13, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-1, 13, 0), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 13, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(0, 13, 1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-1, 13, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(-1, 13, 1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 13, -1), glm::vec3(0, 0, 0))); // black
+      snowman.push_back(Voxel(glm::vec3(1, 13, 1), glm::vec3(0, 0, 0))); // black
+
+      return snowman;
+  }
+
  private:
 };

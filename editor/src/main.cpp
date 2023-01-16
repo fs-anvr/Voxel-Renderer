@@ -5,6 +5,7 @@
 #include <ServiceLocator/ServiceLocator.hpp>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "Primitives.cpp"
 
@@ -77,14 +78,17 @@ class MyApp : public VoxelEngine::App {
           10, VoxelEngine::ServiceLocator::Camera().position);
       VoxelEngine::ServiceLocator::Scene().AddVoxels(sphere);
     }
+
+    auto snowman = Primitives::Snowman();
+    VoxelEngine::ServiceLocator::Scene().AddVoxels(snowman);
   }
 };
 
 int main() {
   using namespace std::string_literals;
 
-  int width = 1366;
-  int height = 768;
+  int width = 1920;
+  int height = 1080;
   std::string title = "Voxel Engine Editor"s;
   
   MyApp app;
